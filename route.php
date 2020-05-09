@@ -19,7 +19,7 @@ switch ($urlParts[0]) {
     
     case 'delete':
            $controllers = new gameController();
-           $controllers-> deleteGame($urlParts[1],$urlParts[2]);
+           $controllers-> deleteGame($urlParts[1]);
         break;
 
     case 'addGame':
@@ -31,6 +31,16 @@ switch ($urlParts[0]) {
         $controller = new gameController();
         $controller->addCategory();
         break;
+
+    case 'deleteCategory':
+            $controllers = new gameController();
+            $controllers-> deleteCategory();
+         break;
+
+    case 'editGame':
+            $controllers = new gameController();
+            $controllers-> editGame();
+    break;
 
     default:
         echo "<h1>Error 404 - Page not found </h1>";
