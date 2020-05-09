@@ -32,6 +32,17 @@ class gameModel{
         $querys->execute();
         return $querys->fetchAll(PDO::FETCH_OBJ);
     }
+     public function deleteGameDB($id) {
+        $query = $this->db->prepare('DELETE FROM juego WHERE id_juego = ?');
+        $query->execute([$id]);
+    }
+    public function saveCategory($title) {
+        $query = $this->db->prepare('INSERT INTO categoria (nombre) VALUES (?)');
+        return $query->execute([$title]);
+    }
+    public function saveGame($title,$detail,$category,$qualification) {
+        $query = $this->db->prepare('INSERT INTO juego (nombre, detalle ,id_categoria, calificacion ) VALUES (?,?,?,?)');
+        return $query->execute([$title,$detail,$category,$qualification]);
+    }
 }
-
 ?>

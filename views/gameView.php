@@ -9,12 +9,13 @@ require_once('libs/Smarty.class.php');
         $smarty->display('templates/category.tpl');
     }
      
-    function viewDetail($games){
+    function viewDetail($games,$categorys){
         $smarty = new Smarty();
         $smarty->assign('title', 'GAMES');
+        $smarty->assign('categorys', $categorys);
         $smarty->assign('games', $games);    
         $smarty->display('templates/detail.tpl');
     }
-      
- }
+ 
+}
 ?>
