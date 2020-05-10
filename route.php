@@ -7,6 +7,7 @@ if ($_GET['action'] == '')
 $urlParts = explode('/', $_GET['action']);
 
 switch ($urlParts[0]) {
+
     case 'game':
            $controllers = new gameController();      
            $controllers-> showGame();
