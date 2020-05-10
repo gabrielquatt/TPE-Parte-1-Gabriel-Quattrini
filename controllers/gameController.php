@@ -1,43 +1,39 @@
 <?php
 
 include_once ('models/gameModel.php');
-include_once ('models/categoryModel.php');
 include_once ('views/gameView.php');
 
  class gameController {
 
+     private $model;
      private $view;
-     private $modelCategory;
-     private $modelGame;
 
      public function __construct(){
-       
-        $this ->modelCategory = new categoryModel();
-        $this ->modelGame = new gameModel();
+        $this ->model = new gameModel();
         $this ->view = new gameView();
      }
 
      public function showGame(){
-        $categorysid = $this->modelCategory->getAllCategory();  
-        $this->view->viewGames($categorysid);
+        $categorys = $this->model->getAll();  
+        $this->view->viewGames($categorys);
         }
 
-     public function showDetails($categoryID){
-        $categorys = $this->modelCategory->getAllCategory();
-        $games = $this->modelGame->getGameSpecific($categoryID);  
+     public function showDetails($game){
+        $categorys = $this->model->getAll();
+        $games = $this->model->getGameSpecific($game);  
         $this->view->viewDetail($games,$categorys);  
         }
 
      public function deleteGame($id) {
-         $this->modelGame->deleteGameDB($id);
+         $this->model->deleteGameDB($id);
          header("Location: ../game");// falta mensaje de borrado con exito
         }
 
      public function deleteCategory() {
       $borrar = $_POST['category'];
-        $this->modelCategory->deleteCategoryDB($borrar);
+        $this->model->deleteCategoryDB($borrar);
         header("Location: game");
-        }
+      }
 
       public function addCategory() {
          $name = $_POST['name'];
@@ -45,7 +41,7 @@ include_once ('views/gameView.php');
            echo("Location: game");
              die();
          }
-         $success = $this->modelCategory->saveCategory($name);
+         $success = $this->model->saveCategory($name);
          if($success){
             header("Location: game");
          }
@@ -55,7 +51,6 @@ include_once ('views/gameView.php');
       }
 
       public function addGame() {
-         
          $title = $_POST['title'];
          $category = $_POST['category'];
          $qualification = $_POST['qualification'];
@@ -64,7 +59,7 @@ include_once ('views/gameView.php');
            echo("faltan datos");
             die();
          }
-         $success = $this->modelGame->saveGameDB($title,$detail,$category,$qualification);
+         $success = $this->model->saveGame($title,$detail,$category,$qualification);
          if($success){
             header("Location: game");//falta crear un mensaje de carga complete
          }
@@ -84,7 +79,7 @@ include_once ('views/gameView.php');
            echo("faltan datos");
             die();
          }else{
-            $this->modelGame->editGameDB($title,$detail,$category,$qualification,$gameid);
+            $this->model->editGameDB($title,$detail,$category,$qualification,$gameid);
             header("Location: game");//falta crear un mensaje de edicion completa 
          }
       }      
