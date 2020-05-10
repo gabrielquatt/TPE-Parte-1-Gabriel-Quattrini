@@ -1,8 +1,10 @@
 <nav>
-<a href="../game"> Home </a>
-{foreach from=$categorys item=category}
+    <li>
+        <a href="{$urlhome}"> Home </a>
+    </li>
+        {foreach from=$categorys item=category}
                 <li>
-                    <a href="../details/{$category->nombre}">{$category->nombre}</a>
+                    <a href="{$urlnav}{$category->id}">{$category->name}</a>
                 </li>
-            {/foreach}
+        {/foreach}
 </nav>

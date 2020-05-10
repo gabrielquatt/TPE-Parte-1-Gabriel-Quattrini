@@ -1,9 +1,10 @@
+<div class="wraped">
 <form action="../editGame" method="POST"> 
     <div>
         <label>Select Game to Edit</label>
         <select name="game">
             {foreach from=$games item=game}
-                <option value="{$game->id_juego}"> {$game->nombre}</option>
+                <option value="{$game->id}"> {$game->name}</option>
             {/foreach}
         </select>
     </div>
@@ -17,7 +18,7 @@
         <label>category game</label>
          <select name="category">
             {foreach from=$categorys item=category}
-                <option value='{$category->id_categoria}'> {$category->nombre}</option>
+                <option value='{$category->id}'> {$category->name}</option>
             {/foreach}
         </select>
     </div>
@@ -37,5 +38,6 @@
         <label>Description</label>
         <textarea name="description" type="text"></textarea>
     </div>
-        <button type="submit">edit Game</button>
+        <button class="btn" type="submit">edit Game</button>
 </form>
+</div>
