@@ -1,5 +1,6 @@
 <div class="wraped">
-<form action="../editGame" method="POST"> 
+<form action="editGame" method="POST"> 
+  <h2>EDIT EXISTING GAME</h2>
     <div>
         <label>Select Game to Edit</label>
         <select name="game">
@@ -38,6 +39,6 @@
         <label>Description</label>
         <textarea name="description" type="text"></textarea>
     </div>
-        <button class="btn" type="submit">edit Game</button>
+        <button class="btn" type="submit">Edit Game</button>
 </form>
 </div>

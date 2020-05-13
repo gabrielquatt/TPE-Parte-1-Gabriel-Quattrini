@@ -1,4 +1,4 @@
-<div class="main">
+<div class="wraped">
 <form action="addCategory" method="POST"> 
     <div>
         <label>NEW CATEGORY</label>

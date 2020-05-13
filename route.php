@@ -1,14 +1,22 @@
 <?php
 require_once ('controllers/gameController.php');
 
+define('URLBASE', '//'. $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+
 if ($_GET['action'] == '')
-    $_GET['action'] = 'game';
+    $_GET['action'] = 'login';
 
 $urlParts = explode('/', $_GET['action']);
 
 switch ($urlParts[0]) {
+    
+    case 'login':
+        $controllers = new gameController();      
+        $controllers->getLogin();
+        break;
+
     case 'game':
-           $controllers = new gameController();      
+        $controllers = new gameController();
            $controllers-> showGame();
         break;
        
@@ -19,7 +27,7 @@ switch ($urlParts[0]) {
     
     case 'delete':
            $controllers = new gameController();
-           $controllers-> deleteGame($urlParts[1]);
+           $controllers-> deleteGame($urlParts[1],$urlParts[2]);
         break;
 
     case 'addGame':
@@ -43,7 +51,8 @@ switch ($urlParts[0]) {
     break;
 
     default:
-        echo "<h1>Error 404 - Page not found </h1>";
+            $controllers = new gameController();
+            $controllers-> showError('Error 404 - Page not found');
     break;
 }
 ?>

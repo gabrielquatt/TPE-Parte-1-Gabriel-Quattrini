@@ -2,26 +2,46 @@
 require_once('libs/Smarty.class.php');
  class gameView{
    
+    public $smarty;
+    
+    function __construct()
+    {
+        $this->smarty = new Smarty();
+        $this->smarty->assign('url', URLBASE);
+    }
+
     function viewGames($categorys) {
-        $smarty = new Smarty();
-        $smarty->assign('title', 'CATEGORYS');
-        $smarty->assign('categorys', $categorys);    
-        $smarty->assign('style','css/style.css');
-        $smarty->assign('urlnav','details/');
-        $smarty->assign('urlhome','game');
-        $smarty->display('templates/category.tpl');
+        $this->smarty->assign('activeSearch', 0);
+        $this->smarty->assign('user', 0);//iniciar o cerrar secsion... a desarollar.
+        $this->smarty->assign('title', 'CATEGORYS');
+        $this->smarty->assign('categorys', $categorys);    
+        $this->smarty->display('templates/category.tpl');
     }
      
     function viewDetail($games, $categorys){
-        $smarty = new Smarty();
-        $smarty->assign('title', 'GAMES');
-        $smarty->assign('categorys', $categorys);
-        $smarty->assign('games', $games);    
-        $smarty->assign('style','../css/style.css');
-        $smarty->assign('urlnav','../details/');
-        $smarty->assign('urlhome','../game');
-        $smarty->display('templates/detail.tpl');
+        $this->smarty->assign('activeSearch', 0);
+        $this->smarty->assign('user', 0);//iniciar o cerrar secsion... a desarollar.
+        $this->smarty->assign('title', 'GAMES');
+        $this->smarty->assign('categorys', $categorys);
+        $this->smarty->assign('games', $games);   
+        $this->smarty->display('templates/detail.tpl');
     }
- 
+    public function showLogin()
+    {     
+        $this->smarty->assign('activeSearch', 1);
+        $this->smarty->assign('user', 0);//iniciar o cerrar secsion... a desarollar.
+        $this->smarty->assign('title', 'LOGIN');
+        $this->smarty->display('templates/login.tpl'); 
+    }
+
+    public function showErrorView($mensagge, $categorys)
+    {
+        $this->smarty->assign('activeSearch', 0);
+        $this->smarty->assign('title', 'ERROR');
+        $this->smarty->assign('text', $mensagge);
+        $this->smarty->assign('categorys', $categorys);
+        $this->smarty->display('templates/error.tpl'); 
+    }
+
 }
 ?>

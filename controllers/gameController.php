@@ -28,9 +28,9 @@ include_once ('views/gameView.php');
         $this->view->viewDetail($games,$categorys);  
         }
 
-     public function deleteGame($id) {
+     public function deleteGame($id,$category) {
          $this->modelGame->deleteGameDB($id);
-         header("Location: ../game");// falta mensaje de borrado con exito
+         header("Location: ../../details/$category");
         }
 
      public function deleteCategory() {
@@ -42,15 +42,15 @@ include_once ('views/gameView.php');
       public function addCategory() {
          $name = $_POST['name'];
          if (empty($name)) {
-           echo("Location: game");
-             die();
+            $this->showError('add name to category');
+            die(); 
          }
          $success = $this->modelCategory->saveCategory($name);
          if($success){
             header("Location: game");
          }
          else{
-            echo("error to add Category"); //falta mensaje de error
+            $this->showError('error to add Category');      
          }
       }
 
@@ -60,34 +60,49 @@ include_once ('views/gameView.php');
          $category = $_POST['category'];
          $qualification = $_POST['qualification'];
          $detail = $_POST['description'];
-         if (empty($title)||empty($category)||empty($qualification)||empty($detail)) {
-           echo("faltan datos");
+         if($category==0){
+            $this->showError('error to add game');
             die();
+         }else if(empty($title)||empty($qualification)||empty($detail)) {
+            $this->showError('error to add game faltan datos');
+         
+         }else{
+            $success = $this->modelGame->saveGameDB($title,$detail,$category,$qualification);
+            if($success){
+               header("Location: details/$category");//falta crear un mensaje de carga complete
+            }
+            else{
+               $this->showError('error to add game');
+            }             
          }
-         $success = $this->modelGame->saveGameDB($title,$detail,$category,$qualification);
-         if($success){
-            header("Location: game");//falta crear un mensaje de carga complete
-         }
-         else{
-             echo(" error to add game"); //falta mensaje de error
-         }          
       }
 
       public function editGame() {
          $gameid = $_POST['game'];
+         if($gameid==''){
+            $gameid=0;
+         }
          $title = $_POST['title'];
          $category = $_POST['category'];
          $qualification = $_POST['qualification'];
          $detail = $_POST['description'];
-
+         
          if (empty($gameid)||empty($title)||empty($category)||empty($qualification)||empty($detail)) {
-           echo("faltan datos");
-            die();
+           $this->showError('faltan datos por favor complete correctamente'); 
          }else{
             $this->modelGame->editGameDB($title,$detail,$category,$qualification,$gameid);
-            header("Location: game");//falta crear un mensaje de edicion completa 
+            header("Location: details/$category"); 
          }
-      }      
+      }
+        
+      public function getLogin()
+      {
+          $this->view->showLogin();
+      }
+      public function showError($mensegge){      
+      $categorysid = $this->modelCategory->getAllCategory(); 
+        $this->view->showErrorView($mensegge, $categorysid);
+    }
 
 }
 ?>

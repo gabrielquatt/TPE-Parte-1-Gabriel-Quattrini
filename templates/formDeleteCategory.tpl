@@ -1,4 +1,4 @@
-<div class="main">
+<div class="wraped">
     <form action="deleteCategory" method="POST"> 
             <label>DELETE EXISTING CATEGORY</label>
             <select name="category">
