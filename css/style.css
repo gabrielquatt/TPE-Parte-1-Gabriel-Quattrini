@@ -62,7 +62,6 @@ input {
 }
 footer {
   border-top: 5px solid  rgb(255, 2, 2);
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;

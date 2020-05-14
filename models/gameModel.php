@@ -18,6 +18,11 @@ class gameModel{
         } catch (Exception $e) {
             var_dump($e);
         }
+    } 
+    public function getAllGame(){
+        $query = $this->db->prepare('SELECT * FROM game');
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
      
       public function getGameSpecific($categoryID) {
@@ -26,6 +31,11 @@ class gameModel{
          $querys->execute([$categoryID]);
          return $querys->fetchAll(PDO::FETCH_OBJ);
      }
+     public function searchGame($nameGame){
+        $query = $this->db->prepare('SELECT * FROM game WHERE name = ?');
+        $query->execute([$nameGame]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 
           public function deleteGameDB($id) {
          $query = $this->db->prepare('DELETE FROM game WHERE id = ?');

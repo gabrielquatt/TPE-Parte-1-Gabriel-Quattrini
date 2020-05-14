@@ -4,28 +4,26 @@
             <form action="game" method="POST">
                 <input type="submit" value="acceder como invitado">  
             </form>                   
-           
-            <div class="subtitle">
+
+            <div>
                 <h2>acceder como administrador</h2>
             </div>
         
-            <form action="game" method="POST">  
+            <form action="verify" method="POST">  
                 <div>   
-                    <label class="oculto"> ---------------- </label>
+                    <label> ---------------- </label>
                 </div>
 
                 <label>UserName</label>
                 <div>                
-                    <input type="text" name="user">
+                    <input type="email" name="email">
                 </div>
 
                 <label>Password</label>
                 <div>
-                    <input type="text" name="pass">
+                    <input type="Password" name="pass">
                 </div>
-
-                <label class="oculto"> ---------------- </label>
-
+                <label> ---------------- </label>
                 <div>
                     <input type="submit" value="login">                      
                 </div>

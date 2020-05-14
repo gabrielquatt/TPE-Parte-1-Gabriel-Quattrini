@@ -17,28 +17,46 @@ include_once ('views/gameView.php');
         $this ->view = new gameView();
      }
 
-     public function showGame(){
+     public function showAllGame(){
+      $categorys = $this->modelCategory->getAllCategory();
+      $games = $this->modelGame->getAllGame();  
+      $this->view->viewDetail($games,$categorys);
+     }
+
+     public function showAllCategory(){
         $categorysid = $this->modelCategory->getAllCategory();  
         $this->view->viewGames($categorysid);
         }
 
-     public function showDetails($categoryID){
-        $categorys = $this->modelCategory->getAllCategory();
-        $games = $this->modelGame->getGameSpecific($categoryID);  
-        $this->view->viewDetail($games,$categorys);  
-        }
-
-     public function deleteGame($id,$category) {
-         $this->modelGame->deleteGameDB($id);
+        
+      public function showDetails($categoryID){
+           $categorys = $this->modelCategory->getAllCategory();
+           $games = $this->modelGame->getGameSpecific($categoryID);  
+           $this->view->viewDetail($games,$categorys);  
+         }
+         
+         public function deleteGame($id,$category) {
+            $this->modelGame->deleteGameDB($id);
          header("Location: ../../details/$category");
-        }
+      }
 
-     public function deleteCategory() {
-      $borrar = $_POST['category'];
-        $this->modelCategory->deleteCategoryDB($borrar);
-        header("Location: game");
-        }
-
+      public function deleteCategory() {
+         $borrar = $_POST['category'];
+         $this->modelCategory->deleteCategoryDB($borrar);
+         header("Location: game");
+      }
+      
+      public function GameSpecific(){
+             $name = $_POST['nameGame'];
+             $game = $this->modelGame->searchGame($name);
+             if(empty($game)){
+             $this->showError('ningun juego con ese nombre se encontro');    
+                die(); 
+             }else{
+                $categorys = $this->modelCategory->getAllCategory();
+                $this->view->viewDetail($game,$categorys);
+              }
+       }
       public function addCategory() {
          $name = $_POST['name'];
          if (empty($name)) {
@@ -53,7 +71,7 @@ include_once ('views/gameView.php');
             $this->showError('error to add Category');      
          }
       }
-
+      
       public function addGame() {
          
          $title = $_POST['title'];
@@ -94,15 +112,10 @@ include_once ('views/gameView.php');
             header("Location: details/$category"); 
          }
       }
-        
-      public function getLogin()
-      {
-          $this->view->showLogin();
-      }
+
       public function showError($mensegge){      
       $categorysid = $this->modelCategory->getAllCategory(); 
         $this->view->showErrorView($mensegge, $categorysid);
     }
-
 }
 ?>
