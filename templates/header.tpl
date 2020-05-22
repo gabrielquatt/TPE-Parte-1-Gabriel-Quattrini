@@ -10,7 +10,7 @@
     <body> 
         <header>
            <img src="img/logo.png">
-           {if {$activeSearch}==0}
+           {if {$ocultSearch}!="0"}
             {include 'templates/serch.tpl'}
            {/if}
         </header>

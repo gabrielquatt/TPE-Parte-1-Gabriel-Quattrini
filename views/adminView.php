@@ -1,24 +1,26 @@
 <?php
 
 require_once('libs/Smarty.class.php');
+include_once('helpers/auth.helper.php');
 
 class adminView{
-    
+   
     public $smarty;
-    
+
     function __construct()
-    {
+     {  
+        $authHelper = new AuthHelper();
+        $username = $authHelper->getLoggedUserName();
+
         $this->smarty = new Smarty();
         $this->smarty->assign('url', URLBASE);
+        $this->smarty->assign('username',$username);
     }
-
-    public function showLogin()
-    {     
-        $this->smarty->assign('activeSearch', 1);
-        $this->smarty->assign('user', 0);//iniciar o cerrar secsion... a desarollar.
-        $this->smarty->assign('title', 'LOGIN');
-        $this->smarty->display('templates/login.tpl'); 
+    function viewAdmin($games, $categorys){   
+               $this->smarty->assign('title', 'ADMIN');
+               $this->smarty->assign('categorys', $categorys);
+               $this->smarty->assign('games', $games);   
+               $this->smarty->display('templates/admin.tpl');
     }
-
 }
 ?>

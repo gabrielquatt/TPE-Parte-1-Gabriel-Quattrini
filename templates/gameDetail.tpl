@@ -10,9 +10,12 @@
         {foreach from=$categorys item=category}
             {if $category->id == $game->id_category}
               <h4>Category: {$category->name}</h4>
-            {/if}         
+            {/if}     
         {/foreach}
-          <a href=" delete/{$game->id}/{$game->id_category}"> Delete Game </a>
+            {if isset($username)}
+            <a href=" delete/{$game->id}/{$game->id_category}"> Delete Game </a>
+            {/if}    
     </div>
       {/foreach}
+         
 </div>

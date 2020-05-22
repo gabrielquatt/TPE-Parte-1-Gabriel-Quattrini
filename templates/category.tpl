@@ -1,10 +1,7 @@
 {include 'templates/header.tpl'}
 {include 'templates/navMenu.tpl'}
 
-    <div class="container">
-        {include 'templates/formAddCategory.tpl'}
-        {include 'templates/formDeleteCategory.tpl'}
-    </div>
+    
 
     <div class="info">
         <div class="list">
@@ -18,7 +15,7 @@
             </ul>
         </div>
             <div class="detail">
-                <p> descripcion de sitio mas demas cosas de relleno para la pagina, tambien mostrara la busqueda de serch, mas la opcion a de editar en caso de ser administrador //a desarrollar</p>
+                <p> descripcion de sitio mas demas cosas de relleno para la pagina //a desarrollar</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/qG-FFTeZfZM"></iframe>
          </div>
     </div>

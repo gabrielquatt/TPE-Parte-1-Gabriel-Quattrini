@@ -3,17 +3,17 @@
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
-   
+   font-family: sans-serif;
 }
 body{
     margin: 0%;
-    background-color: rgba(20, 20, 20, 0.993);
+   background-color: rgba(20, 20, 20, 0.993); 
 }
 h1,h2,a{
-    color: red;
+    color: rgb(235, 59, 59);
 }
 header{
-    display: flex;
+    display: Flex;
     flex-flow: row wrap;
     justify-content: space-between;
 }
@@ -28,19 +28,17 @@ padding: 3px;
 }
 
 nav {
-    /* background-color: black; */
     border-bottom: 5px solid  rgb(255, 8, 0);   
      margin: 0px;
      display: flex;
      flex-flow: row wrap;
-     font-size: 30px;
      justify-content: space-evenly;
      padding: 0px;
  }
  .btn {
     background: rgba(34, 34, 53, 0.445);
     border: 2px solid #ff0000;
-    padding: 10px;
+    padding: 8px;
     font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
@@ -62,6 +60,7 @@ input {
 }
 footer {
   border-top: 5px solid  rgb(255, 2, 2);
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -138,9 +137,6 @@ h2{
 color: white;
 }
 
-footer>h2{
-    margin: 5px;
-}
 label,ul,li{
     font-size: 20px;
     margin: 20px;
@@ -149,3 +145,4 @@ ul,li{
     list-style: none;
     margin: 2px;
 }
+ .container>.btn{margin-bottom: 45px;}

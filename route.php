@@ -16,11 +16,22 @@ switch ($urlParts[0]) {
         $controllers = new loginController();      
         $controllers->getLogin();
         break;
-    case 'verify':
-        $controllers = new loginController();      
-        $controllers->verifyLogin();
+        
+    case 'logout':
+            $controllers = new loginController();      
+            $controllers->logout();
         break;
 
+    case 'adminView':
+        $controllers = new loginController();      
+        $controllers->adminActive();
+    break;
+        
+    case 'verify':
+        $controllers = new loginController();      
+        $controllers->verify();
+        break;
+        
     case 'search':
         $controllers = new gameController();
         $controllers-> GameSpecific();
@@ -32,7 +43,6 @@ switch ($urlParts[0]) {
         break;
        
     case 'details':
-        
         if($urlParts[1]=='all'){
             $controllers = new gameController();
             $controllers-> showAllGame($urlParts[1]);

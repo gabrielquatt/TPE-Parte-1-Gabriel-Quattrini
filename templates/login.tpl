@@ -16,12 +16,12 @@
 
                 <label>UserName</label>
                 <div>                
-                    <input type="email" name="email">
+                    <input type="text" name="username" required>
                 </div>
 
                 <label>Password</label>
                 <div>
-                    <input type="Password" name="pass">
+                    <input type="Password" name="pass"  required>
                 </div>
                 <label> ---------------- </label>
                 <div>
