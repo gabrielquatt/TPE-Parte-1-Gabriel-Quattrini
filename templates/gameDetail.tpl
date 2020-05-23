@@ -1,6 +1,7 @@
 <div>
+<iframe class="video" src="https://www.youtube.com/embed/eARa4PZn_aE"></iframe>
       {foreach from=$games item=game}
-    <div class="detail">
+    <div class="detailgame">
           <h2> Nombre: {$game->name}</h2>
           <h2>Detalles:</h2>
           <p>{$game->detail}</p>
@@ -17,5 +18,4 @@
             {/if}    
     </div>
       {/foreach}
-         
 </div>

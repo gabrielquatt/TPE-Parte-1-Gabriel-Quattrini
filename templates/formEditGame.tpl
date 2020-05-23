@@ -1,5 +1,6 @@
 <div class="wraped">
     <form action="editGame" method="POST"> 
+  
     <h2>EDIT EXISTING GAME</h2>
         <div>
             <label>Select Game to Edit</label>
@@ -11,11 +12,13 @@
         </div>
 
         <div>
+        </br>
             <label>Name</label>
             <input name="title" type="text">
         </div>
     
         <div>
+        </br>
             <label>category game</label>
             <select name="category">
                 {foreach from=$categorys item=category}
@@ -25,6 +28,7 @@
         </div>
 
         <div>
+        </br>
             <label>califacion</label>
             <select name="qualification">
                     <option value="1">1</option>
@@ -36,7 +40,9 @@
         </div>
 
         <div>
+        </br>
             <label>Description</label>
+            </br>
             <textarea name="description" type="text"></textarea>
         </div>
             <button class="btn" type="submit">Edit Game</button>

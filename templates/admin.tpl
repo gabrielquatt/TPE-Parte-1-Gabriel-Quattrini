@@ -2,16 +2,23 @@
 {include 'templates/navMenu.tpl'}
 
 {if isset($username)}
- <div class="container">
-        {include 'templates/formAddCategory.tpl'}
-        {include 'templates/formDeleteCategory.tpl'}
-  </div>
-
   <div class="container">
-    {include 'templates/formAddGame.tpl'}
-    {include 'templates/formEditGame.tpl'}
-  </div>
-    {include 'templates/gameDetail.tpl'}
+          {include 'templates/formAddCategory.tpl'}
+          {include 'templates/formDeleteCategory.tpl'}
+    </div>
+
+    <div class="container">
+      {include 'templates/formAddGame.tpl'}
+      {include 'templates/formEditGame.tpl'}
+    </div>
+  <div class="info">
+          <div class="detail">
+            {include 'templates/gameDetail.tpl'}
+          </div>
+      <div class="list">
+        {include 'templates/divlinks.tpl'}
+      </div>
+    </div>
 {/if}
 
     <div class="container">

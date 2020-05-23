@@ -23,7 +23,7 @@ include_once ('views/gameView.php');
      */
     public function showAllCategory(){
        $categorysid = $this->modelCategory->getAllCategory();  
-       $this->view->viewGames($categorysid);
+       $this->view->viewHome($categorysid);
      }
      
      /**

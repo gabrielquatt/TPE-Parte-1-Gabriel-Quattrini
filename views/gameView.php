@@ -15,10 +15,10 @@ class gameView{
         $this->smarty->assign('url', URLBASE);
         $this->smarty->assign('username',$username);
     }
-    function viewGames($categorys) {   
+    function viewHome($categorys) {   
         $this->smarty->assign('title', 'CATEGORYS');
         $this->smarty->assign('categorys', $categorys);    
-        $this->smarty->display('templates/category.tpl');
+        $this->smarty->display('templates/home.tpl');
     }
     
     function viewDetail($games, $categorys){
