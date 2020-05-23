@@ -1,31 +1,15 @@
 <?php
 
-class categoryModel{
-  
-    private $db;
-   
-       public function __construct(){
-           $this->db = new PDO('mysql:host=localhost;dbname=games;charset=utf8', 'root', '');
-           $host = 'localhost';
-           $userName = 'root';
-           $password = '';
-           $database = 'games';
-   
-           try {
-               $this->db = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $userName, $password);
-       
-               $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-           } catch (Exception $e) {
-               var_dump($e);
-           }
-        }
-        
+require_once('model.php');
+
+class categoryModel extends model{
+      
      /**
      *  Funcion que trae de la base de datos todas las "categorias" de la tabla category
      * 
      */
         public function getAllCategory() {
-            $query = $this->db->prepare('SELECT * FROM category');
+            $query = $this->getdb()->prepare('SELECT * FROM category');
             $query->execute();
             return $query->fetchAll(PDO::FETCH_OBJ);
         }
@@ -35,7 +19,7 @@ class categoryModel{
      * (se borrara de la tabla game todos item los que tengas esa categoria (cascada))
      */
         public function deleteCategoryDB($borrar) {
-            $query = $this->db->prepare('DELETE FROM category WHERE id = ?');
+            $query = $this->getdb()->prepare('DELETE FROM category WHERE id = ?');
             $query->execute([$borrar]);
         }
 
@@ -44,10 +28,8 @@ class categoryModel{
      * 
      */
         public function saveCategory($namecategory) {
-            $query = $this->db->prepare('INSERT INTO category (name) VALUES (?)');
+            $query = $this->getdb()->prepare('INSERT INTO category (name) VALUES (?)');
             return $query->execute([$namecategory]);
         }
-
-        }
-    
+}
 ?>

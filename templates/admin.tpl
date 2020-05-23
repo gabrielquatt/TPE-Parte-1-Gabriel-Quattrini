@@ -1,7 +1,8 @@
 {include 'templates/header.tpl'}
 {include 'templates/navMenu.tpl'}
-
+<h1>{$username}</h1>
 {if isset($username)}
+
   <div class="container">
           {include 'templates/formAddCategory.tpl'}
           {include 'templates/formDeleteCategory.tpl'}
@@ -19,6 +20,13 @@
         {include 'templates/divlinks.tpl'}
       </div>
     </div>
+{else}
+<br>
+<h1>acceso denegado</h1>
+<br>
+<p>vista solo para administradores</p>
+<br>
+<img class="gif" src="img/confundido.gif" alt="confundido">
 {/if}
 
     <div class="container">

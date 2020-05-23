@@ -44,42 +44,54 @@ switch ($urlParts[0]) {
        
     case 'details':
         if($urlParts[1]=='all'){
-            $controllers = new gameController();
-            $controllers-> showAllGame($urlParts[1]);
+                $controllers = new gameController();
+                $controllers-> showAllGame($urlParts[1]);
         }else{
-            $controllers = new gameController();
-            $controllers-> showDetails($urlParts[1]);
+                $controllers = new gameController();
+                $controllers-> showDetails($urlParts[1]);
         }
-       break;
+    break;
+       
+       case 'addGame':
+        $controller = new gameController();
+        $controller->addGame();
+    break;
     
-    case 'delete':
-           $controllers = new gameController();
-           $controllers-> deleteGame($urlParts[1],$urlParts[2]);
-        break;
-
-    case 'addGame':
-            $controller = new gameController();
-            $controller->addGame();
-        break;
-
     case 'addCategory':
         $controller = new gameController();
         $controller->addCategory();
-        break;
-
-    case 'deleteCategory':
-            $controllers = new gameController();
-            $controllers-> deleteCategory();
-         break;
-
+    break;
+    
     case 'editGame':
-            $controllers = new gameController();
-            $controllers-> editGame();
+        $controllers = new gameController();
+        $controllers-> editGame();
     break;
 
-    default:
+    case 'deleteCategory':
+        if (isset($_SESSION['USERNAME']))
+            {
             $controllers = new gameController();
-            $controllers-> showError('Error 404 - Page not found');
+            $controllers-> deleteCategory();
+             }else{
+                $controllers = new gameController();
+                $controllers-> showError('NEGADO');
+            }
+        break;
+
+    case 'delete':
+        if (isset($_SESSION['USERNAME']))
+            {
+            $controllers = new gameController();
+            $controllers-> deleteGame($urlParts[1],$urlParts[2]);
+             }else{
+                $controllers = new gameController();
+                 $controllers->showError('NEGADO');
+             }
+     break;
+ 
+    default:
+        $controllers = new gameController();
+        $controllers-> showError('Error 404 - Page not found');
     break;
 }
 ?>

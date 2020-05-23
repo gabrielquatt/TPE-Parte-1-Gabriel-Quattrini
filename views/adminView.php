@@ -1,26 +1,14 @@
 <?php
-
-require_once('libs/Smarty.class.php');
 include_once('helpers/auth.helper.php');
+require_once('view.php');
 
-class adminView{
-   
-    public $smarty;
+class adminView extends View{ 
 
-    function __construct()
-     {  
-        $authHelper = new AuthHelper();
-        $username = $authHelper->getLoggedUserName();
-
-        $this->smarty = new Smarty();
-        $this->smarty->assign('url', URLBASE);
-        $this->smarty->assign('username',$username);
-    }
     function viewAdmin($games, $categorys){   
-               $this->smarty->assign('title', 'ADMIN');
-               $this->smarty->assign('categorys', $categorys);
-               $this->smarty->assign('games', $games);   
-               $this->smarty->display('templates/admin.tpl');
+        $this->getSmarty()->assign('title', 'ADMIN');
+        $this->getSmarty()->assign('categorys', $categorys);
+        $this->getSmarty()->assign('games', $games);   
+        $this->getSmarty()->display('templates/admin.tpl');
     }
 }
 ?>

@@ -1,23 +1,13 @@
 <?php
-require_once('libs/Smarty.class.php');
 
+require_once('view.php');
 
-class loginView{
+class loginView extends View{
 
-public $smarty;
-
-public function __construct() {  
-    $this->smarty = new Smarty();
-    $this->smarty->assign('url', URLBASE);
-    
-}
-
-public function showLogin()
-        {     
-            $this->smarty->assign('ocultSearch', 0);//oculta el btn acceder y el search
-            $this->smarty->assign('title', 'LOGIN');
-            $this->smarty->display('templates/login.tpl'); 
-        }
-        
+    public function showLogin(){     
+            $this->getSmarty()->assign('ocultSearch', 0);//oculta el btn acceder y el search
+            $this->getSmarty()->assign('title', 'LOGIN');
+            $this->getSmarty()->display('templates/login.tpl'); 
+        } 
 }
 ?>

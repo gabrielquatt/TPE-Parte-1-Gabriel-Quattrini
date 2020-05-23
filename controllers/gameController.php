@@ -1,91 +1,69 @@
 <?php
 
-include_once ('models/gameModel.php');
-include_once ('models/categoryModel.php');
-include_once ('views/gameView.php');
+include_once ('controller.php');
 
- class gameController {
-    
-    private $view;
-    private $modelCategory;
-    private $modelGame;
-    
-    public function __construct(){ 
+ class gameController extends controller{        
 
-       $this ->modelCategory = new categoryModel();
-        $this ->modelGame = new gameModel();
-        $this ->view = new gameView();
-     }
-            
      /**
-     *  Muetra pagina principal haciendo un listado de categorias
-     * 
+     *  Muetra pagina principal haciendo un listado de categorias 
      */
     public function showAllCategory(){
-       $categorysid = $this->modelCategory->getAllCategory();  
-       $this->view->viewHome($categorysid);
+       $categorysid = $this->getmodelcategoty()->getAllCategory();  
+       $this-> getgameview()->viewHome($categorysid);
      }
      
      /**
      *  Trae y muestra todos los detalles de los juegos llamado por "all games"
-     * 
      */
      public function showAllGame(){
-      $categorys = $this->modelCategory->getAllCategory();
-      $games = $this->modelGame->getAllGame();  
-      $this->view->viewDetail($games,$categorys);
+      $categorys = $this->getmodelcategoty()->getAllCategory();
+      $games = $this-> getgamemodel()->getAllGame();  
+      $this-> getgameview()->viewDetail($games,$categorys);
      }
-
 
      /**
      *  Trae y muestra juegos segun su categoria
-     * 
      */
       public function showDetails($categoryID){
-         $categorys = $this->modelCategory->getAllCategory();
-         $games = $this->modelGame->getGameSpecific($categoryID);  
-         $this->view->viewDetail($games,$categorys);  
-      }
-       
+         $categorys = $this->getmodelcategoty()->getAllCategory();
+         $games = $this-> getgamemodel()->getGameSpecific($categoryID);  
+         $this-> getgameview()->viewDetail($games,$categorys);  
+      }       
       
      /**
-     *  Funcion para eleminar juego juego, recibe como parametro su $category para recargar su ubicacion actual 
-     * 
+     *  Funcion para eleminar juego juego, recibe como parametro su $category para recargar su ubicacion actual  
      */
       public function deleteGame($id,$category) {
-         $this->modelGame->deleteGameDB($id);
+         $this->getgamemodel()->deleteGameDB($id);
          header("Location: ../../details/$category");
       }
       
      /**
      *  recibe la id de a categoria a eleminar 
-     * 
      */
       public function deleteCategory() {
          $borrar = $_POST['category'];
-         $this->modelCategory->deleteCategoryDB($borrar);
+         $this->getmodelcategoty()->deleteCategoryDB($borrar);
          header("Location: game");
       }
       
      /**
      *  Funcion del search para buscar juegos con el mismo valor ingresado
-     * 
      */
       public function GameSpecific(){
          $name = $_POST['nameGame'];
-         $game = $this->modelGame->searchGame($name);
+         $game = $this-> getgamemodel()->searchGame($name);
             if(empty($game)){
              $this->showError('ningun juego con ese nombre se encontro');    
                die(); 
             }else{
-               $categorys = $this->modelCategory->getAllCategory();
-               $this->view->viewDetail($game,$categorys);
+               $categorys = $this->getmodelcategoty()->getAllCategory();
+               $this-> getgameview()->viewDetail($game,$categorys);
             }
       }
 
      /**
      * Funcion para añadir categoria nueva y agragarla en la base de datos
-     * 
      */
       public function addCategory() {
          $name = $_POST['name'];
@@ -93,7 +71,7 @@ include_once ('views/gameView.php');
             $this->showError('add name to category');
             die(); 
          }
-         $success = $this->modelCategory->saveCategory($name);
+         $success = $this->getmodelcategoty()->saveCategory($name);
          if($success){
             header("Location: game");
          }
@@ -101,11 +79,9 @@ include_once ('views/gameView.php');
             $this->showError('error to add Category');      
          }
       }
-      
-      
+            
      /**
-     *  Funcion para añadir juego nuevo //no se podra agragar un juego nuevo si no se asocia a una categoria existente
-     * 
+     *  Funcion para añadir juego nuevo //no se podra agragar un juego nuevo si no se asocia a una categoria existente 
      */
       public function addGame() {
          $title = $_POST['title'];
@@ -119,7 +95,7 @@ include_once ('views/gameView.php');
             $this->showError('error to add game faltan datos');
          
          }else{
-            $success = $this->modelGame->saveGameDB($title,$detail,$category,$qualification);
+            $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category,$qualification);
             if($success){
                header("Location: details/$category");//falta crear un mensaje de carga complete
             }
@@ -146,7 +122,7 @@ include_once ('views/gameView.php');
          if (empty($gameid)||empty($title)||empty($category)||empty($qualification)||empty($detail)) {
            $this->showError('faltan datos por favor complete correctamente'); 
          }else{
-               $this->modelGame->editGameDB($title,$detail,$category,$qualification,$gameid);
+            $this-> getgamemodel()->editGameDB($title,$detail,$category,$qualification,$gameid);
                header("Location: details/$category"); 
             
          }
@@ -157,8 +133,8 @@ include_once ('views/gameView.php');
      * ($mensegge es el texto que varia segun de donde se llame la funcion.)
      */
       public function showError($mensegge){      
-      $categorysid = $this->modelCategory->getAllCategory(); 
-        $this->view->showErrorView($mensegge, $categorysid);
+      $categorysid = $this->getmodelcategoty()->getAllCategory(); 
+      $this-> getgameview()->showErrorView($mensegge, $categorysid);
     }
 }
 ?>
