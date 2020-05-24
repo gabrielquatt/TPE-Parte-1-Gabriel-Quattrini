@@ -19,7 +19,7 @@ include_once ('controller.php');
                 $_SESSION['USERNAME'] = $userDb->username;
                header('Location: '. URLBASE."adminView");
             }else{
-             $this->showError("error de inicio de session");
+                header('Location: '. URLBASE."login");
             }
         }
     }
@@ -44,13 +44,6 @@ include_once ('controller.php');
         $categorys = $this->getmodelcategoty()->getAllCategory();
         $games = $this->getgamemodel()->getAllGame();
         $this->getadminview()->viewAdmin($games, $categorys);
-    }
-    /**
-    * funcion de error
-    */    
-    public function showError($mensegge){      
-        $categorysid = $this->getmodelcategoty()->getAllCategory(); 
-          $this->getadminview()->showErrorView($mensegge, $categorysid);
-      }        
+    }       
 }
 ?>

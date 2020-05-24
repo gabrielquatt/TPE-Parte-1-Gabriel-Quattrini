@@ -97,7 +97,7 @@ include_once ('controller.php');
          }else{
             $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category,$qualification);
             if($success){
-               header("Location: details/$category");//falta crear un mensaje de carga complete
+               header("Location: adminView");
             }
             else{
                $this->showError('error to add game');

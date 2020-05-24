@@ -74,7 +74,7 @@ switch ($urlParts[0]) {
             $controllers-> deleteCategory();
              }else{
                 $controllers = new gameController();
-                $controllers-> showError('NEGADO');
+                $controllers-> showError('ACCESO NEGADO');
             }
         break;
 
@@ -85,7 +85,7 @@ switch ($urlParts[0]) {
             $controllers-> deleteGame($urlParts[1],$urlParts[2]);
              }else{
                 $controllers = new gameController();
-                 $controllers->showError('NEGADO');
+                 $controllers->showError('ACCESO NEGADO');
              }
      break;
  

@@ -14,7 +14,7 @@ include_once ('models/userModel.php');
         private $modelCategory;
         private $modelGame;
         private $modelAdmin;
-        
+
         public function __construct(){
             $this->modelCategory = new categoryModel();
             $this->modelGame = new gameModel();
@@ -42,4 +42,5 @@ include_once ('models/userModel.php');
     public function getadminview(){
         return $this->adminView;
     }
+
 }

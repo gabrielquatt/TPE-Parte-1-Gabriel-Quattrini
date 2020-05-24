@@ -22,7 +22,7 @@
     </div>
 {else}
 <br>
-<h1>acceso denegado</h1>
+<h1>acceso negado</h1>
 <br>
 <p>vista solo para administradores</p>
 <br>
