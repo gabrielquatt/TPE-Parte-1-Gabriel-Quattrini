@@ -31,5 +31,12 @@ class categoryModel extends model{
             $query = $this->getdb()->prepare('INSERT INTO category (name) VALUES (?)');
             return $query->execute([$namecategory]);
         }
+    /**
+     *  Funcion para editar categoria en la base de datos.
+     */
+        public function editcategoryDB($title,$category) {
+            $query = $this->getdb()->prepare('UPDATE  category SET name = ? WHERE id = ?');
+            $query->execute([$title,$category]);
+        }
 }
 ?>

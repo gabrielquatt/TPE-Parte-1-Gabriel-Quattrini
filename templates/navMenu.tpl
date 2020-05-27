@@ -1,6 +1,6 @@
 <nav>        
         <li>
-            <h5><a href="game"> Home </a></h5>
+            <h5><a href="home"> Home </a></h5>
         </li>
     {if isset($username)}
         <li>

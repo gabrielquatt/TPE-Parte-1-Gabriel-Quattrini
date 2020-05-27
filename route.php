@@ -11,10 +11,10 @@ if ($_GET['action'] == '')
 $urlParts = explode('/', $_GET['action']);
 
 switch ($urlParts[0]) {
-    
+
     case 'login':
-        $controllers = new loginController();      
-        $controllers->getLogin();
+            $controllers = new loginController();      
+            $controllers->getLogin();
         break;
         
     case 'logout':
@@ -23,75 +23,68 @@ switch ($urlParts[0]) {
         break;
 
     case 'adminView':
-        $controllers = new loginController();      
-        $controllers->adminActive();
-    break;
+            $controllers = new loginController();      
+            $controllers->adminActive();
+        break;
         
     case 'verify':
-        $controllers = new loginController();      
-        $controllers->verify();
+            $controllers = new loginController();      
+            $controllers->verify();
         break;
         
     case 'search':
-        $controllers = new gameController();
-        $controllers-> GameSpecific();
+            $controllers = new gameController();
+            $controllers-> GameSpecific();
         break;
 
-    case 'game':
-        $controllers = new gameController();
-           $controllers-> showAllCategory();
+    case 'home':
+            $controllers = new gameController();
+            $controllers-> showAllCategory();
         break;
        
     case 'details':
         if($urlParts[1]=='all'){
-                $controllers = new gameController();
-                $controllers-> showAllGame($urlParts[1]);
+            $controllers = new gameController();
+            $controllers-> showAllGame($urlParts[1]);
         }else{
-                $controllers = new gameController();
-                $controllers-> showDetails($urlParts[1]);
+            $controllers = new gameController();
+            $controllers-> showDetails($urlParts[1]);
         }
-    break;
+        break;
        
-       case 'addGame':
-        $controller = new gameController();
-        $controller->addGame();
-    break;
+    case 'addGame':
+            $controller = new gameController();
+            $controller->addGame();
+        break;
     
     case 'addCategory':
-        $controller = new gameController();
-        $controller->addCategory();
-    break;
-    
-    case 'editGame':
-        $controllers = new gameController();
-        $controllers-> editGame();
-    break;
-
-    case 'deleteCategory':
-        if (isset($_SESSION['USERNAME']))
-            {
-            $controllers = new gameController();
-            $controllers-> deleteCategory();
-             }else{
-                $controllers = new gameController();
-                $controllers-> showError('ACCESO NEGADO');
-            }
+            $controller = new gameController();
+            $controller->addCategory();
         break;
 
-    case 'delete':
-        if (isset($_SESSION['USERNAME']))
-            {
+    case 'editGame':
             $controllers = new gameController();
-            $controllers-> deleteGame($urlParts[1],$urlParts[2]);
-             }else{
-                $controllers = new gameController();
-                 $controllers->showError('ACCESO NEGADO');
-             }
-     break;
+            $controllers-> editGame();
+        break;
+
+    case 'editCategory':
+            $controllers = new gameController();
+            $controllers-> editCategory();
+        break;    
+    
+    case 'deleteCategory':
+            $controllers = new gameController();
+            $controllers-> deleteCategory();
+        break;
+
+    case 'deleteGame':
+            $controllers = new gameController();
+            $controllers-> deleteGame($urlParts[1]);   
+    break;
  
     default:
-        $controllers = new gameController();
-        $controllers-> showError('Error 404 - Page not found');
+            $controllers = new Controller();
+            $controllers-> showError('Error 404 - Page not found');
     break;
 }
 ?>

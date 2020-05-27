@@ -33,18 +33,31 @@ include_once ('controller.php');
      /**
      *  Funcion para eleminar juego juego, recibe como parametro su $category para recargar su ubicacion actual  
      */
-      public function deleteGame($id,$category) {
+      public function deleteGame($id) {
+         if (isset($_SESSION['USERNAME']))
+            {
          $this->getgamemodel()->deleteGameDB($id);
-         header("Location: ../../details/$category");
+         header("Location: ../adminView");}else{
+            $this->showError('acceso negado');
+         }
       }
       
      /**
      *  recibe la id de a categoria a eleminar 
      */
       public function deleteCategory() {
-         $borrar = $_POST['category'];
-         $this->getmodelcategoty()->deleteCategoryDB($borrar);
-         header("Location: game");
+         if (isset($_SESSION['USERNAME']))
+         {
+            if(empty($_POST['category'])){
+               $this->showError('no hay categoria para eliminar!!!');
+            }else{
+               $borrar = $_POST['category'];
+               $this->getmodelcategoty()->deleteCategoryDB($borrar);
+               header("Location: adminView");
+            }
+         }else{
+            $this->showError('acceso negado');
+         }
       }
       
      /**
@@ -52,6 +65,7 @@ include_once ('controller.php');
      */
       public function GameSpecific(){
          $name = $_POST['nameGame'];
+         $name =strtolower($name);//strtolower — Convierte una cadena a minúsculas.
          $game = $this-> getgamemodel()->searchGame($name);
             if(empty($game)){
              $this->showError('ningun juego con ese nombre se encontro');    
@@ -68,12 +82,13 @@ include_once ('controller.php');
       public function addCategory() {
          $name = $_POST['name'];
          if (empty($name)) {
-            $this->showError('add name to category');
-            die(); 
+            $this->showError('ADD NAME TO CATEGORY');
+            die();
          }
+         $name =strtolower($name);//strtolower — Convierte una cadena a minúsculas.
          $success = $this->getmodelcategoty()->saveCategory($name);
          if($success){
-            header("Location: game");
+            header("Location: adminView");
          }
          else{
             $this->showError('error to add Category');      
@@ -84,23 +99,25 @@ include_once ('controller.php');
      *  Funcion para añadir juego nuevo //no se podra agragar un juego nuevo si no se asocia a una categoria existente 
      */
       public function addGame() {
+         if(empty($_POST['category'])){
+            $this->showError('NO HAY CATEGORIA');
+         }
+
          $title = $_POST['title'];
          $category = $_POST['category'];
          $qualification = $_POST['qualification'];
          $detail = $_POST['description'];
-         if($category==0){
-            $this->showError('error to add game');
-            die();
-         }else if(empty($title)||empty($qualification)||empty($detail)) {
-            $this->showError('error to add game faltan datos');
          
+         if(empty($title)||empty($qualification)||empty($detail)) {
+            $this->showError('"ERROR TO ADD GAME" FALTAN DATOS');        
          }else{
+            $title = strtolower($title);//strtolower — Convierte una cadena a minúsculas
             $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category,$qualification);
             if($success){
                header("Location: adminView");
             }
             else{
-               $this->showError('error to add game');
+               $this->showError('ERROR TO ADD GAME');
             }             
          }
       }
@@ -110,31 +127,48 @@ include_once ('controller.php');
      * recibe como parametro el id del juego al que se desea "pisar" o actualizar
      */
       public function editGame() {
-         $gameid = $_POST['game'];
-         if($gameid==''){
-            $gameid=0;
+         if(empty($_POST['game'])){ /** solucion a error cuando no hay categorias*/
+            $this->showError('ningun juego seleccionado para editar');
+            die();
+         }elseif((empty($_POST['category']))){
+            $this->showError('no se encontro ninguna categoria');
+            die();
          }
+         $gameid = $_POST['game'];
          $title = $_POST['title'];
          $category = $_POST['category'];
          $qualification = $_POST['qualification'];
          $detail = $_POST['description'];
          
-         if (empty($gameid)||empty($title)||empty($category)||empty($qualification)||empty($detail)) {
+         if (empty($title)||empty($qualification)||empty($detail)) {
            $this->showError('faltan datos por favor complete correctamente'); 
          }else{
+            $title = strtolower($title);// strtolower — Convierte una cadena a minúsculas
             $this-> getgamemodel()->editGameDB($title,$detail,$category,$qualification,$gameid);
-               header("Location: details/$category"); 
-            
+            header("Location: details/$category");
          }
       }
+       /**
+       * Funcion para editar juego
+       * recibe como parametro el id de la categoria a editar
+       */
 
-     /**
-     * Funcion que llama a la vista de mensaje de error
-     * ($mensegge es el texto que varia segun de donde se llame la funcion.)
-     */
-      public function showError($mensegge){      
-      $categorysid = $this->getmodelcategoty()->getAllCategory(); 
-      $this-> getgameview()->showErrorView($mensegge, $categorysid);
-    }
+       public function editCategory(){
+
+         if((empty($_POST['category']))){
+            $this->showError('no se encontro ninguna categoria');
+            die();
+         }elseif((empty($_POST['tittle']))){
+            $this->showError('añadir nombre a categoria');
+            die();
+         }
+
+         $categoryID = $_POST['category'];
+         $tittle = $_POST['tittle'];
+
+         $tittle = strtolower($tittle);//strtolower — Convierte una cadena a minúsculas.
+         $this->getmodelcategoty()->editCategoryDB($tittle,$categoryID);
+         header("Location: adminView");
+       }
 }
 ?>

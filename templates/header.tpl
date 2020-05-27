@@ -11,7 +11,7 @@
         <header>
            <img src="img/logo.png">
            {if {$ocultSearch}!="0"}
-            {include 'templates/serch.tpl'}
+              {include 'templates/serch.tpl'}
            {/if}
         </header>
 

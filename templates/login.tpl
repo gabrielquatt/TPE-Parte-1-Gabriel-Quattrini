@@ -1,7 +1,8 @@
 {include 'templates/header.tpl' }
     <div class="index"> 
-        <div class="login">                    
-            <form action="game" method="POST">
+        <div class="login">    
+                        
+            <form action="home" method="POST">
                 <input type="submit" value="acceder como invitado">  
             </form>                   
 

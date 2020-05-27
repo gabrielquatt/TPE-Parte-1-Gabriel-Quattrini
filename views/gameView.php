@@ -17,11 +17,11 @@ class gameView extends View{
         $this->getSmarty()->display('templates/detail.tpl');
     }
     
-    public function showErrorView($mensagge, $categorys){
-        $this->getSmarty()->assign('title', 'ERROR');
-        $this->getSmarty()->assign('text', $mensagge);
-        $this->getSmarty()->assign('categorys', $categorys);
-        $this->getSmarty()->display('templates/error.tpl'); 
-    }  
+     public function showErrorView($mensagge, $categorys){
+         $this->getSmarty()->assign('title', 'ERROR');
+         $this->getSmarty()->assign('text', $mensagge);
+         $this->getSmarty()->assign('categorys', $categorys);
+         $this->getSmarty()->display('templates/error.tpl'); 
+     }  
 }
 ?>

@@ -12,13 +12,13 @@
         </div>
 
         <div>
-        </br>
+        <br>
             <label>Name</label>
             <input name="title" type="text">
         </div>
     
         <div>
-        </br>
+        <br>
             <label>category game</label>
             <select name="category">
                 {foreach from=$categorys item=category}
@@ -28,7 +28,7 @@
         </div>
 
         <div>
-        </br>
+        <br>
             <label>califacion</label>
             <select name="qualification">
                     <option value="1">1</option>
@@ -40,9 +40,9 @@
         </div>
 
         <div>
-        </br>
+        <br>
             <label>Description</label>
-            </br>
+            <br>
             <textarea name="description" type="text"></textarea>
         </div>
             <button class="btn" type="submit">Edit Game</button>

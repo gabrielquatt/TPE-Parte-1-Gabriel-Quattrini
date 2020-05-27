@@ -19,7 +19,8 @@ include_once ('controller.php');
                 $_SESSION['USERNAME'] = $userDb->username;
                header('Location: '. URLBASE."adminView");
             }else{
-                header('Location: '. URLBASE."login");
+               
+                header('Location: '. URLBASE."login ");
             }
         }
     }

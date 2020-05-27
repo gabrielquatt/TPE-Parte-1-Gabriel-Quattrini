@@ -3,7 +3,7 @@
 {else}        
     <a class="btn" href="logout"> ACCEDER </a>
 {/if}
-    <form class="search" action="search" method="POST">
-        <input type="text" name="nameGame" placeholder="search">
-        <input type="submit" value="send">                      
+    <form class="search" action="search" method="POST" >
+        <input class="busqueda" type="text" name="nameGame" placeholder="search">
+        <input type="submit" value="buscar">                      
     </form>

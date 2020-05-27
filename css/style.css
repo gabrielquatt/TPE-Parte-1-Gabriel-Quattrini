@@ -6,51 +6,72 @@
     font-family: sans-serif;
 }
 body{
-   background-color: rgba(42, 19, 19, 0.993); 
+   background-image: url(../img/fondo.png);
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-attachment: fixed;
+   background-size: cover;
+   backface-visibility: hidden;
 }
 h1,h2,a{
-    color: rgb(235, 59, 59);
+    color: rgb(207, 34, 3);
+}
+h1{
+margin-top: 5%;
+margin-bottom: 5%;
 }
 .search{
     padding: 8px;
     background: none;
+    border: none;
 }
 header>.btn{
     padding: 2px;
 }
 .btn {
-   background: rgba(34, 34, 53, 0.445);
+   background: rgba(195, 17, 17, 0.445);
    padding: 8px;
    font-size: 15px;
    cursor: pointer;
    border-radius: 5px;
    margin: 1%;
+
+}
+.btn:hover,input:hover {
+    transition: all 0.5s;
+    background-color: #b11818
+}
+a:hover{
+
+    border-radius: 5px;
+    padding: 2px;
+    color: rgba(246, 246, 246, 0.61);
 }
 nav {
-    border-bottom: 5px solid  rgb(255, 8, 0);   
+    border-bottom: 5px solid  rgb(255, 8, 0);
      padding: 0px;
+     display: flex;
+     flex-flow: wrap;
+     justify-content: space-evenly;
  }
-form { 
-    margin-top: 4px;
-    padding: 20px;  
-    border: solid rgb(104, 9, 9) 2px; 
+form {
+    padding: 20px;
  }
 input {
     background-color: rgb(61, 67, 87);
     height: 25px;
-    width: 180px;
     border-radius: 3px;
 }
-.form,input,.list,.btn,.wraped,.login{
-    border: 2px solid rgb(255, 0, 0); 
+form,input,.list,.btn,.wraped,.login{
+    border: 2px solid rgb(255, 0, 0);
 }
-.container,.info,nav,header{
+.container,.info,header{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
 }
 .list{
-    width: 20%;
+    width: 30%;
     margin: 2px;
     height: min-content;
 }
@@ -75,25 +96,19 @@ input {
 }
 .detail{
     text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
     margin-top: 3px;
     margin-bottom: 3px;
 }
 .detailgame{
     text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-top: 10px;
     border: solid rgb(126, 128, 0) 2px;
+    background-image: url(../img/fondodiv.jpg);
  }
-.detailgame{
-    background-image: url(../img/fondo4.jpg);
-    background-size: contain;
-    
-}
 .login,form,nav,footer,.encabezado,header,.list{
-    background-image: url(../img/fondologin.jpg); 
+    background-image: url(../img/fondologin.jpg);
     background-size: cover;
 }
 .login {
@@ -107,15 +122,19 @@ input {
 }
 .detail>h4,footer>h2,label,ul,li,.btn,p,h4,input{
 color: white;
+padding: 4px;
 }
 .container>.btn{
     margin-bottom: 45px;
 }
-label,ul,li{
+label{
+    font-size: 15px;
+}
+ul,li{
     font-size: 20px;
     margin: 2px;
     list-style: none;
-} 
+}
 footer {
     border-top: 5px solid  rgb(255, 2, 2);
     position: fixed;
@@ -124,13 +143,23 @@ footer {
     width: 100%;
 }
 .video{
-    width:560px; 
-    height: 315px;
+    width:75%;
+    height: 390px;
     border: none;
+    margin-top: 10%;
 }
 .gif{
     width: 50%;
 }
 .img{
 width: 80%;
+}
+.busqueda{
+    text-transform: none;
+}
+.error{
+    background: rgba(26, 0, 0, 0.753);
+    border: solid 2px yellow;
+    margin: 40px;
+    padding: 30px;
 }
