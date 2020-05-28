@@ -52,7 +52,7 @@ include_once ('models/userModel.php');
     
     public function showError($mensegge){      
         $categorysid = $this->getmodelcategoty()->getAllCategory(); 
-        $this-> getgameview()->showErrorView($mensegge, $categorysid);
+        $this->geterrorview()->showErrorView($mensegge, $categorysid);
       }
 
 }

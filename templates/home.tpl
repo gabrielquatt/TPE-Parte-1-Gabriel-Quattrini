@@ -31,6 +31,7 @@
                     <h4>add new game</h4> <p>(para agregar un nuevo juego)</p><br>
                     <h4>edit existing game</h4> <p>(podra cambiar todos los datos de un juego existente)</p><br>
                     <h4>delete</h4> <p>se habilitara delete game en la descripcion de cada juego.</p><br>
+                    <h4>edit category</h4><p> esta opcion permitira seleccionar una categoria y cambiar su nombre</p><br>
                     </p>
                 {else}
                     <br>
@@ -40,6 +41,7 @@
                     los distintos juegos selecionando ver todos (all games) o segun su categoria, a las funciones de
                     administracion no tendra acceso alguno si no sabe contraseña y usuario de algun admin.<p/>
                     <br>
+                    <p>funciones que tal vez se implementara, sera guardar portada de juegos en la db + link de trailer, form para crear cuenta y en la seccion Home tener ultimos juego añadidos.</p>
                 {/if}  
                 <iframe class="video" src="https://www.youtube.com/embed/qG-FFTeZfZM"></iframe>
             </div>

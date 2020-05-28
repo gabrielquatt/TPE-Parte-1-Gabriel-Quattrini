@@ -14,12 +14,9 @@ include_once ('controller.php');
             $userDb = $this-> getusermodel()->getUserByUsername($user);
           
             if(!empty($userDb) && password_verify($pass, $userDb->password)){ 
-                session_start();
-                $_SESSION['ID_USER'] = $userDb->id;
-                $_SESSION['USERNAME'] = $userDb->username;
-               header('Location: '. URLBASE."adminView");
-            }else{
-               
+                AuthHelper::login($userDb);
+                header('Location: '. URLBASE."adminView");
+            }else{             
                 header('Location: '. URLBASE."login ");
             }
         }
@@ -28,8 +25,7 @@ include_once ('controller.php');
     * funcion que destruira cualquier session iniciada
     */  
     public function logout() {
-        session_status();
-        session_destroy();        
+        AuthHelper::logout();     
         header('Location: '.URLBASE.'login');
     }
     /**
@@ -42,9 +38,18 @@ include_once ('controller.php');
     * funcion para ver la vista de administrador
     */  
     public function adminActive(){
+        $acces = AuthHelper::getLoggedUserName();
         $categorys = $this->getmodelcategoty()->getAllCategory();
         $games = $this->getgamemodel()->getAllGame();
-        $this->getadminview()->viewAdmin($games, $categorys);
-    }       
+        if (isset($acces)){
+            $this->getadminview()->viewAdmin($games, $categorys);
+        }else{
+            $this->accessError();
+        }
+    }    
+    public function accessError(){      
+        $categorysid = $this->getmodelcategoty()->getAllCategory(); 
+        $this->geterrorview()->accesserror($categorysid);    
+      }   
 }
 ?>
