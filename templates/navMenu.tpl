@@ -2,7 +2,7 @@
         <li>
             <h5><a href="home"> Home </a></h5>
         </li>
-    {if isset($username)}
+    {if  isset($admin) }
         <li>
             <h5><a href="adminView"> Admin </a></h5>
         </li>

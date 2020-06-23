@@ -1,8 +1,8 @@
 <?php
 
-include_once ('controller.php');
+include_once ('Controller.php');
 
-class gameController extends controller{        
+class GameController extends Controller{        
    
    /**
    *  Funcion del search para buscar juegos con el mismo valor ingresado
@@ -24,18 +24,27 @@ class gameController extends controller{
      *  Trae y muestra todos los detalles de los juegos llamado por "all games"
      */
      public function showAllGame(){
+      $array =  $this->user();
       $categorys = $this->getmodelcategoty()->getAllCategory();
       $games = $this-> getgamemodel()->getAllGame();  
-      $this-> getgameview()->viewDetail($games,$categorys);
+      $this-> getgameview()->viewDetail($games,$categorys,$array);
+     }
+     
+     public function showGameDetails($gameID){
+      $array =  $this->user();
+      $categorys = $this->getmodelcategoty()->getAllCategory();
+      $game = $this-> getgamemodel()->getGame($gameID);  
+      $this-> getgameview()->viewGameDetail($game,$categorys,$array);  
      }
 
      /**
      *  Trae y muestra juegos segun su categoria
      */
       public function showDetails($categoryID){
+         $array =  $this->user();
          $categorys = $this->getmodelcategoty()->getAllCategory();
-         $games = $this-> getgamemodel()->getGameSpecific($categoryID);  
-         $this-> getgameview()->viewDetail($games,$categorys);  
+         $games = $this-> getgamemodel()->getGamesCategory($categoryID);  
+         $this-> getgameview()->viewDetail($games,$categorys,$array);  
       }       
       
      /**
@@ -58,14 +67,19 @@ class gameController extends controller{
 
          $title = $_POST['title'];
          $category = $_POST['category'];
-         $qualification = $_POST['qualification'];
          $detail = $_POST['description'];
          
-         if(empty($title)||empty($qualification)||empty($detail)) {
+         if(empty($title)||empty($detail)) {
             $this->showError('"ERROR TO ADD GAME" FALTAN DATOS');        
          }else{
             $title = strtolower($title);//strtolower — Convierte una cadena a minúsculas
-            $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category,$qualification);
+            if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" 
+            || $_FILES['input_name']['type'] == "image/png" )
+             {
+               $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category,$_FILES['input_name']['tmp_name']);
+            }else{
+               $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category);
+            }
             if($success){
                header("Location: adminView");
             }
@@ -91,14 +105,14 @@ class gameController extends controller{
          $gameid = $_POST['game'];
          $title = $_POST['title'];
          $category = $_POST['category'];
-         $qualification = $_POST['qualification'];
          $detail = $_POST['description'];
          
-         if (empty($title)||empty($qualification)||empty($detail)) {
+         if (empty($title)||empty($detail)) {
            $this->showError('faltan datos por favor complete correctamente'); 
          }else{
+           
             $title = strtolower($title);// strtolower — Convierte una cadena a minúsculas
-            $this-> getgamemodel()->editGameDB($title,$detail,$category,$qualification,$gameid);
+            $this-> getgamemodel()->editGameDB($title,$detail,$category,$gameid);
             header("Location: details/$category");
          }
       }

@@ -12,7 +12,6 @@ class model{
  
          try {
              $this->db = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $userName, $password);
-     
              $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
          } catch (Exception $e) {
              var_dump($e);
@@ -20,7 +19,6 @@ class model{
       }
 
       public function getdb(){
-          return  $this->db; 
+          return $this->db; 
       }
 }
-?>

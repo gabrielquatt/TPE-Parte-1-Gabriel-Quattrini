@@ -2,7 +2,7 @@
 
 require_once('model.php');
 
-class gameModel extends model{
+class GameModel extends model{
   
     /**
      *  Funcion que trae de la base de datos todas los juegos de la tabla game
@@ -13,12 +13,17 @@ class gameModel extends model{
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
+    public function getGame($gameid){
+        $query = $this->getdb()->prepare('SELECT * FROM game WHERE id = ?');
+        $query->execute([$gameid]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+  
     /**
     *  funcion que traera todos los juegos cuyo id_category sea la misma que la mandanda por parametro
     * ($categoryID esta vinculada al requerimiento de mostrar items por categoria especifica)
     */
-    public function getGameSpecific($categoryID) {
+    public function getGamesCategory($categoryID) {
          $querys = $this->getdb()->prepare('SELECT game.*, category.name as category FROM
          game JOIN category ON game.id_category = category.id WHERE category.id = ?');
          $querys->execute([$categoryID]);
@@ -48,18 +53,28 @@ class gameModel extends model{
      *  Funcion guardara el "juego" en la base de datos
      * 
      */
-    public function saveGameDB($title,$detail,$category,$qualification) {
-        $query = $this->getdb()->prepare('INSERT INTO game (name, detail ,id_category, qualification ) VALUES (?,?,?,?)');
-        return $query->execute([$title,$detail,$category,$qualification]);
+    public function saveGameDB($title,$detail,$category,$image = NULL) {
+        $pathImg = null;
+        if ($image)
+            $pathImg = $this->uploadImage($image);
+
+        $query = $this->getdb()->prepare('INSERT INTO game (name, detail ,id_category,image) VALUES (?,?,?,?)');
+        return $query->execute([$title,$detail,$category, $pathImg]);
     }
+    private function uploadImage($image){
+        $target = 'img/portada/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
+    }
+
 
     /**
      *  Funcion que editara juego con los nuevos valores mandados, recibe el id del juego a editar. 
      * 
      */
-    public function editGameDB($title,$detail,$category,$qualification,$game) {
-        $query = $this->getdb()->prepare('UPDATE  game SET name = ?, detail = ?, id_category = ?, qualification = ? WHERE id = ?');
-        $query->execute([$title,$detail,$category,$qualification,$game]);
+    public function editGameDB($title,$detail,$category, $game) {
+        $query = $this->getdb()->prepare('UPDATE  game SET name = ?, detail = ?, id_category = ? WHERE id = ?');
+        $query->execute([$title,$detail,$category,$game]);
     }
 }
 ?>

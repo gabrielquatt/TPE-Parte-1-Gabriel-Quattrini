@@ -1,26 +1,27 @@
 <?php
+// include_once ('views/view.php');
+include_once ('views/GameView.php');
+include_once ('views/AdminView.php');
+include_once ('views/LoginView.php');
+include_once ('views/ErrorView.php');
+include_once ('models/CategoryModel.php');
+include_once ('models/GameModel.php');
+include_once ('models/UserModel.php');
 
-include_once ('views/gameView.php');
-include_once ('views/adminView.php');
-include_once ('views/loginView.php');
-include_once ('views/errorView.php');
-include_once ('models/categoryModel.php');
-include_once ('models/gameModel.php');
-include_once ('models/userModel.php');
-
- class controller {
-
+ class Controller {
+        private $user;
         private $login;
         private $gameView;
-        private $adminview;
+        private $adminView;
         private $errorView;
         private $modelCategory;
         private $modelGame;
         private $modelAdmin;
 
         public function __construct(){
-            $this->modelCategory = new categoryModel();
-            $this->modelGame = new gameModel();
+            $this->user =AuthHelper::getDataUser();
+            $this->modelCategory = new CategoryModel();
+            $this->modelGame = new GameModel();
             $this->modelAdmin = new userModel();
             $this->gameView = new gameView();
             $this->adminView = new adminView();
@@ -37,7 +38,7 @@ include_once ('models/userModel.php');
     public function getusermodel(){
         return $this->modelAdmin;
     }
-    public function getgameview(){
+    public function getgameview(){ 
         return $this->gameView;
     }
     public function getadminview(){
@@ -49,10 +50,23 @@ include_once ('models/userModel.php');
     public function geterrorview(){
         return $this->errorView;
     }
-    
-    public function showError($mensegge){      
+//TODO implementar para consultas
+    public function user(){
+        return $this->user;
+    }
+  
+    public function admin(){
+        $name = AuthHelper::getLoggedUserName();
+         if(isset($name)){
+             $admin = $this->getusermodel()->admiAcces($name);
+             return $admin; 
+         }
+    }
+
+    public function showError($mensegge){ 
+        $array = $this->user();     
         $categorysid = $this->getmodelcategoty()->getAllCategory(); 
-        $this->geterrorview()->showErrorView($mensegge, $categorysid);
-      }
+        $this->geterrorview()->showErrorView($mensegge, $categorysid,$array);
+    }
 
 }

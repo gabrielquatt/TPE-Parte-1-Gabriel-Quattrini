@@ -1,9 +1,21 @@
 {if isset($username)}
-    <a class="btn"  href="logout"> CERRAR SESION </a>
-{else}        
-    <a class="btn" href="logout"> ACCEDER </a>
+   
+    <label class="user">{$username} <label>
+    <a class="user" href="logout">  CERRAR SESION </a>
+
+    {else}        
+    <label class="user"><a href="logout"> ACCEDER </a><label>
+    <label>|</label>
+    <a href="registro"> registrarse </a>
 {/if}
-    <form class="search" action="search" method="POST" >
+
+
+    {*
+    *
+    *//search comentado, no requerido para la 2da entrega
+    *
+     <form class="search" action="search" method="POST" >
         <input class="busqueda" type="text" name="nameGame" placeholder="search">
         <input type="submit" value="buscar">                      
-    </form>
+    </form> 
+    *}

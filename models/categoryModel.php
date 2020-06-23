@@ -1,10 +1,10 @@
 <?php
 
-require_once('model.php');
+require_once ('model.php');
 
-class categoryModel extends model{
-      
-     /**
+class CategoryModel extends model{
+
+    /**
      *  Funcion que trae de la base de datos todas las "categorias" de la tabla category
      * 
      */
@@ -18,9 +18,10 @@ class categoryModel extends model{
      *  Funcion para eliminar categoria segun su id mando por parametro
      * (se borrara de la tabla game todos item los que tengas esa categoria (cascada))
      */
-        public function deleteCategoryDB($borrar) {
+        public function deleteCategory($borrar) {
             $query = $this->getdb()->prepare('DELETE FROM category WHERE id = ?');
             $query->execute([$borrar]);
+            return $borrar;
         }
 
     /**

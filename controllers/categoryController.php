@@ -1,15 +1,16 @@
 <?php
 
-include_once ('controller.php');
+include_once ('Controller.php');
 
- class categoryController extends controller{  
+ class CategoryController extends Controller{  
 
      /**
      *  Muetra pagina principal haciendo un listado de categorias 
      */
     public function showAllCategory(){
+         $array =  $this->user();
         $categorysid = $this->getmodelcategoty()->getAllCategory();  
-        $this-> getgameview()->viewHome($categorysid);
+        $this-> getgameview()->viewHome($categorysid, $array);
       }
 
      /**
@@ -21,7 +22,7 @@ include_once ('controller.php');
               $this->showError('no hay categoria para eliminar!!!');
            }else{
               $borrar = $_POST['category'];
-              $this->getmodelcategoty()->deleteCategoryDB($borrar);
+              $this->getmodelcategoty()->deleteCategory($borrar);
               header("Location: adminView");
            }
     }

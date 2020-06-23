@@ -1,50 +1,43 @@
 <div class="wraped">
-    <form action="editGame" method="POST"> 
-  
-    <h2>EDIT EXISTING GAME</h2>
+    <form action="editGame" method="POST">
+
+        <h2>EDIT EXISTING GAME</h2>
+        <br>
         <div>
             <label>Select Game to Edit</label>
-            <select name="game">
-                {foreach from=$games item=game}
-                    <option value="{$game->id}"> {$game->name}</option>
-                {/foreach}
+            <select name="game"  id="select">
+              <option class="view" id="option"></option>
+                 {foreach from=$games item=game}
+                     <option value="{$game->id}"> {$game->name}</option>
+               {/foreach}
             </select>
+        </div>
+        <br>
+        <div>
+            <br>
+            <label>Name</label>
+            <input name="title" type="text" id="title">
         </div>
 
         <div>
-        <br>
-            <label>Name</label>
-            <input name="title" type="text">
-        </div>
-    
-        <div>
-        <br>
+            <br>
             <label>category game</label>
             <select name="category">
+                
                 {foreach from=$categorys item=category}
                     <option value='{$category->id}'> {$category->name}</option>
                 {/foreach}
             </select>
         </div>
-
-        <div>
+       
         <br>
-            <label>califacion</label>
-            <select name="qualification">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-            </select>
-        </div>
-
         <div>
-        <br>
+            <br>
             <label>Description</label>
             <br>
-            <textarea name="description" type="text"></textarea>
+            <textarea name="description" type="text" id="descripcion"></textarea>
         </div>
-            <button class="btn" type="submit">Edit Game</button>
+        <button class="btn" type="submit">Edit Game</button>
     </form>
 </div>
+<script type="text/javascript" src="js/javascript.js"></script>
