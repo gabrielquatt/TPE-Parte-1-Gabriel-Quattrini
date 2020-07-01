@@ -6,6 +6,9 @@
         <li>
             <h5><a href="adminView"> Admin </a></h5>
         </li>
+        <li>
+        <h5><a href="viewUser"> USERS </a></h5>
+        </li>
     {/if}
         <li>
             <h5><a href="details/all"> all games </a></h5>

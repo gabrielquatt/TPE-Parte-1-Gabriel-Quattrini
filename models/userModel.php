@@ -17,11 +17,7 @@ class userModel extends model{
          $query->execute([$username]);
          return $query->fetchAll(PDO::FETCH_OBJ);
      }
-     public function getAllUser($userName){
-        $query = $this->getdb()->prepare('SELECT * FROM `registry` WHERE `username` = ?');
-        $query->execute([$userName]);
-        return $query->fetchAll(PDO::FETCH_OBJ);
-     }
+    
      public function getAllEmail($email){
         $query = $this->getdb()->prepare('SELECT * FROM `registry` WHERE `email` = ?');
         $query->execute([$email]);
@@ -41,5 +37,11 @@ class userModel extends model{
         $query = $this->getdb()->prepare('UPDATE `registry` SET `priority` =  ? WHERE id = ?');
         $query->execute([$priority,$userId]);
     }
+    public function userDelete($idUser){
+        $query = $this->getdb()->prepare('DELETE FROM `registry` WHERE id = ?');
+        $query->execute([$idUser]);
+    }
+
+    
 }
 ?>

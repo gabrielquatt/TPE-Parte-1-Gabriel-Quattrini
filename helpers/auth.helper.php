@@ -27,14 +27,18 @@ class AuthHelper {
      */
 
     static public function getPriorityUser() {
-        self::start();
-            if (isset($_SESSION['PRIORITY'])){
-               if($_SESSION['PRIORITY']==1){     
-                   return $_SESSION['PRIORITY'];
-               }
-            } 
-    }
+         self::start();
+             if (isset($_SESSION['PRIORITY'])){
+                if($_SESSION['PRIORITY']==1){     
+                    return $_SESSION['PRIORITY'];
+                }
+             } 
+     }
 
+     /**
+      *devuelve el nombre del usuario loggeado y la prioridad si es que tiene una 
+      *
+     */
     static public function getDataUser(){
         self::start(); 
         $data=[]; 
@@ -68,6 +72,9 @@ class AuthHelper {
         session_destroy();
     }
  
+    /**
+     * Chekea si alguien esta logeado
+     */
     public static function checkLogActivo(){
         self::start();
         if(!isset($_SESSION['ID_USER'])){

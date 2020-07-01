@@ -14,7 +14,7 @@
 <div class="container">
     {include 'templates/formAddGame.tpl'}
     {include 'templates/formEditGame.tpl'}
-    {include 'templates/form-priority.tpl'}
+    {include 'templates/form-Edit-Img.tpl'}
 </div>
 
 <div class="info">
@@ -27,7 +27,7 @@
 
     <div class="list">
         {include 'templates/listgames.tpl'}
-        {include 'templates/divlinks.tpl'}
+        {* {include 'templates/divlinks.tpl'} *}
     </div>
 </div>
 

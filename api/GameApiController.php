@@ -19,7 +19,32 @@ class GameApiController extends ApiController{
                 $this->ApiView()->response("no existe ningun juego con el id de categoria {$idGame}", 404);
         }
     }
+   
 
+
+
+
+
+
+
+
+
+
+
+
+
+    //-----------------no usado solo de practica con la api---------------------------//
+    public function getImg($params = []) 
+    {
+            $idGame = $params[':ID'];
+            $game = $this->modelGame()->getImg($idGame);//por ID de categoria traera todos los games
+            if ($game)
+                $this->ApiView()->response($game, 200);
+            else
+                $this->ApiView()->response("no contiene portada", 404);
+        
+    }
+    
     public function deleteGame($params = []) {
         $idGame = $params[':ID'];
         $games = $this-> modelGame()->getAllGame();//TODO desarrollar funcion para mostrar 1 solo juego

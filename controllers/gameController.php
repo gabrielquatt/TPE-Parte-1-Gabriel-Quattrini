@@ -4,22 +4,7 @@ include_once ('Controller.php');
 
 class GameController extends Controller{        
    
-   /**
-   *  Funcion del search para buscar juegos con el mismo valor ingresado
-   */
-    public function GameSpecific(){
-       $name = $_POST['nameGame'];
-       $name =strtolower($name);//strtolower — Convierte una cadena a minúsculas.
-       $game = $this-> getgamemodel()->searchGame($name);
-          if(empty($game)){
-           $this->showError('ningun juego con ese nombre se encontro');    
-             die(); 
-          }else{
-             $categorys = $this->getmodelcategoty()->getAllCategory();
-             $this-> getgameview()->viewDetail($game,$categorys);
-          }
-    }
-    
+  
    /**
      *  Trae y muestra todos los detalles de los juegos llamado por "all games"
      */
@@ -30,13 +15,6 @@ class GameController extends Controller{
       $this-> getgameview()->viewDetail($games,$categorys,$array);
      }
      
-     public function showGameDetails($gameID){
-      $array =  $this->user();
-      $categorys = $this->getmodelcategoty()->getAllCategory();
-      $game = $this-> getgamemodel()->getGame($gameID);  
-      $this-> getgameview()->viewGameDetail($game,$categorys,$array);  
-     }
-
      /**
      *  Trae y muestra juegos segun su categoria
      */
@@ -45,7 +23,19 @@ class GameController extends Controller{
          $categorys = $this->getmodelcategoty()->getAllCategory();
          $games = $this-> getgamemodel()->getGamesCategory($categoryID);  
          $this-> getgameview()->viewDetail($games,$categorys,$array);  
-      }       
+      } 
+      
+      /**
+       * Funcion que buscara juego por su id y devolvera toda su iformacion
+       */
+     public function showGameDetails($gameID){
+      $array =  $this->user();
+      $categorys = $this->getmodelcategoty()->getAllCategory();
+      $game = $this-> getgamemodel()->getGame($gameID);  
+      $images = $this->getImageModel()->allImagesId($gameID);
+      $this-> getgameview()->viewGameDetail($game,$categorys,$array,$images);  
+     }
+
       
      /**
      *  Funcion para eleminar juego juego, recibe como parametro su $category para recargar su ubicacion actual  
@@ -55,16 +45,16 @@ class GameController extends Controller{
          $this->getgamemodel()->deleteGameDB($id);
          header("Location: ../adminView");
       }
-             
-     /**
-     *  Funcion para añadir juego nuevo //no se podra agragar un juego nuevo si no se asocia a una categoria existente 
-     */
+      
+      /**
+       *  Funcion para añadir juego nuevo //no se podra agragar un juego nuevo si no se asocia a una categoria existente 
+       */
       public function addGame() {
          AuthHelper::checkLogActivo();
          if(empty($_POST['category'])){
             $this->showError('NO HAY CATEGORIA');
          }
-
+         
          $title = $_POST['title'];
          $category = $_POST['category'];
          $detail = $_POST['description'];
@@ -76,9 +66,9 @@ class GameController extends Controller{
             if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" 
             || $_FILES['input_name']['type'] == "image/png" )
              {
-               $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category,$_FILES['input_name']['tmp_name']);
+                $success =$this-> getgameModel()->saveGameDB($title,$detail,$category,$_FILES['input_name']['tmp_name']);
             }else{
-               $success =$this-> getgamemodel()->saveGameDB($title,$detail,$category);
+               $success =$this-> getgameModel()->saveGameDB($title,$detail,$category);
             }
             if($success){
                header("Location: adminView");
@@ -109,13 +99,11 @@ class GameController extends Controller{
          
          if (empty($title)||empty($detail)) {
            $this->showError('faltan datos por favor complete correctamente'); 
-         }else{
-           
+         }else{  
             $title = strtolower($title);// strtolower — Convierte una cadena a minúsculas
             $this-> getgamemodel()->editGameDB($title,$detail,$category,$gameid);
             header("Location: details/$category");
          }
       }
-       
+
 }
-?>

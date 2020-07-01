@@ -1,7 +1,7 @@
 <div class="wraped">
     <form action="editCategory" method="POST"> 
             <h2>edit Category</h2>
-            <br>
+            <label>select category</label>
             <select name="category">
                 {foreach from=$categorys item=category}
                     <option value='{$category->id}'> {$category->name}</option>

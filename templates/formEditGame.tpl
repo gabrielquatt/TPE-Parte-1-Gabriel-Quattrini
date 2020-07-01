@@ -1,6 +1,5 @@
 <div class="wraped">
     <form action="editGame" method="POST">
-
         <h2>EDIT EXISTING GAME</h2>
         <br>
         <div>
@@ -9,10 +8,10 @@
               <option class="view" id="option"></option>
                  {foreach from=$games item=game}
                      <option value="{$game->id}"> {$game->name}</option>
-               {/foreach}
+                 {/foreach}
             </select>
         </div>
-        <br>
+        
         <div>
             <br>
             <label>Name</label>
@@ -40,4 +39,3 @@
         <button class="btn" type="submit">Edit Game</button>
     </form>
 </div>
-<script type="text/javascript" src="js/javascript.js"></script>

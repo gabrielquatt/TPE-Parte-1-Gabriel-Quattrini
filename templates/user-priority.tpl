@@ -30,9 +30,5 @@
             {/if}
         {/foreach}
     </ul>
-    <br>
-    <br>
-    <label>prueba de array</label>
-        {$array}
-        {$priority}
+   
 </div>

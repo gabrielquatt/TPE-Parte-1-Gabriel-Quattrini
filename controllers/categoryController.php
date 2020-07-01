@@ -8,10 +8,12 @@ include_once ('Controller.php');
      *  Muetra pagina principal haciendo un listado de categorias 
      */
     public function showAllCategory(){
+
          $array =  $this->user();
         $categorysid = $this->getmodelcategoty()->getAllCategory();  
         $this-> getgameview()->viewHome($categorysid, $array);
       }
+
 
      /**
      *  elimina categoria por selecion de if en un form
@@ -47,6 +49,7 @@ include_once ('Controller.php');
            $this->showError('error to add Category');      
         }
      }
+     
      /**
        * Funcion para editar juego
        * recibe como parametro el id de la categoria a editar

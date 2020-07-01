@@ -6,7 +6,7 @@ class GameView extends View{
 
     function viewHome($categorys,$array) 
     {   
-        $this->getSmarty()->assign('title', 'CATEGORYS');
+        $this->getSmarty()->assign('title', 'HOME');
         $this->getSmarty()->assign('categorys', $categorys); 
         $this->getSmarty()->assign('admin',$array['priority']);   
         $this->getSmarty()->assign('username',$array['name']);
@@ -23,14 +23,15 @@ class GameView extends View{
         $this->getSmarty()->display('templates/detail.tpl');
     }
 
-    public function viewGameDetail($games, $categorys,$array)
+    public function viewGameDetail($games, $categorys,$array,$capturas)
     {
-        $this->getSmarty()->assign('title', 'GAMES');
+        $this->getSmarty()->assign('title', 'GAME');
         $this->getSmarty()->assign('categorys', $categorys);
         $this->getSmarty()->assign('games', $games);   
+        $this->getSmarty()->assign('capturas', $capturas);
         $this->getSmarty()->assign('admin',$array['priority']);
         $this->getSmarty()->assign('username',$array['name']);
-        $this->getSmarty()->display('templates/detailGame.tpl');
+        $this->getSmarty()->display('templates/info-Game.tpl');
     }
     
      public function showErrorView($mensagge, $categorys,$array)

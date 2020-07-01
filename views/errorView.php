@@ -3,10 +3,7 @@
 require_once('View.php');
 
 class ErrorView extends View{
- 
 
-    
-    
     public function showErrorView($mensagge, $categorys,$array){
         $this->getSmarty()->assign('title', 'ERROR');
         $this->getSmarty()->assign('text', $mensagge);
