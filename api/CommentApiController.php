@@ -5,27 +5,32 @@ require_once('ApiController.php');
 class CommentApiController extends ApiController
 {
     public function  getComments($params = [])
-    { 
-        if(empty($params)){
-            $comments = $this->modelComment()->getComments();
-            $this->ApiView()->response($comments, 200);
+    {
+        $idGame = $params[':ID']; //id del juego 
+        $valor = $params[':DATA'];
+
+        if ($params[':ORDER'] == "ASC") {
+            $comments =  $this->modelComment()->commentOrderASC($idGame, $valor); 
+        } else if ($params[':ORDER'] == "DESC"){
+            $comments =  $this->modelComment()->commentOrderDESC($idGame, $valor); 
         }else{
-            $idComment = $params[':ID'];
-            $comments = $this->modelComment()->getCommentsId($idComment); //por ID de categoria traera todos los comentarios
-            if ($comments)
-                $this->ApiView()->response($comments, 200);
-            else
-                $this->ApiView()->response("no existe ningun comentario", 404);
+            $comments =  $this->modelComment()->getComments($idGame);
         }
-    }
-    public function deleteComment($params = []){
-        $idComment = $params[':ID'];
-        $this->modelComment()->deleteCommentId($idComment);
-        $this->ApiView()->response( "comentario eliminado", 200);
-   
+         if ($comments)
+             $this->ApiView()->response($comments, 200);
+         else
+             $this->ApiView()->response(null, 200);
     }
 
-    public function postComment() {
+    public function deleteComment($params = [])
+    {
+        $idComment = $params[':ID'];
+        $this->modelComment()->deleteCommentId($idComment);
+        $this->ApiView()->response("comentario eliminado", 200);
+    }
+
+    public function postComment()
+    {
         $body = $this->getData();
 
         $gameId = $body->id_game;
@@ -35,7 +40,6 @@ class CommentApiController extends ApiController
         $puntage = $body->calificacion;
 
         $comments = $this->modelComment()->postComments($gameId, $user, $commentary, $data, $puntage);
-        $this->ApiView()->response($comments, 200);//insert en nuestra BD
+        $this->ApiView()->response($comments, 200); //insert en nuestra BD
     }
-
 }

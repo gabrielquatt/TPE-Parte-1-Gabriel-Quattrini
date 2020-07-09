@@ -74,7 +74,8 @@ class GameModel extends model
             $query = $this->getdb()->prepare('INSERT INTO game (name, detail ,id_category,image) VALUES (?,?,?,?)');
             return $query->execute([$title, $detail, $category, $pathImg]);
     }
-       /**
+
+    /**
      * Funcion para guardar imagen el en servidor //nota la portada no se guarda en la tabla image en el servidor
      * 
      */
@@ -94,6 +95,7 @@ class GameModel extends model
         $query = $this->getdb()->prepare('DELETE image FROM game WHERE id = ?');
         $query->execute([$id]);
     }
+
     /**
      * Funcion para traer especificamente la Portada de un juego de la base de datos (nota funcion utilizada por ApiRest)
      * 
@@ -104,6 +106,7 @@ class GameModel extends model
         $query->execute([$idGame]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
     /**
      * Funcion para editar Imagen de portada
      * @param img = siempre sera una imagen chequeado en el controller

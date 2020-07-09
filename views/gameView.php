@@ -8,8 +8,10 @@ class GameView extends View{
     {   
         $this->getSmarty()->assign('title', 'HOME');
         $this->getSmarty()->assign('categorys', $categorys); 
-        $this->getSmarty()->assign('admin',$array['priority']);   
-        $this->getSmarty()->assign('username',$array['name']);
+        if($array){
+            $this->getSmarty()->assign('admin', $array['priority']);   
+            $this->getSmarty()->assign('username', $array['name']);
+        }
         $this->getSmarty()->display('templates/home.tpl');
     }
     
@@ -18,8 +20,10 @@ class GameView extends View{
         $this->getSmarty()->assign('title', 'GAMES');
         $this->getSmarty()->assign('categorys', $categorys);
         $this->getSmarty()->assign('games', $games);   
-        $this->getSmarty()->assign('admin',$array['priority']);
-        $this->getSmarty()->assign('username',$array['name']);
+        if($array){
+            $this->getSmarty()->assign('admin', $array['priority']);   
+            $this->getSmarty()->assign('username', $array['name']);
+        }
         $this->getSmarty()->display('templates/detail.tpl');
     }
 
@@ -29,8 +33,13 @@ class GameView extends View{
         $this->getSmarty()->assign('categorys', $categorys);
         $this->getSmarty()->assign('games', $games);   
         $this->getSmarty()->assign('capturas', $capturas);
-        $this->getSmarty()->assign('admin',$array['priority']);
-        $this->getSmarty()->assign('username',$array['name']);
+        if($array){
+            $this->getSmarty()->assign('admin', $array['priority']);   
+            $this->getSmarty()->assign('username', $array['name']);
+        }else{
+            $this->getSmarty()->assign('admin',null);   
+            $this->getSmarty()->assign('username', null);
+        }
         $this->getSmarty()->display('templates/info-Game.tpl');
     }
     
@@ -39,8 +48,10 @@ class GameView extends View{
          $this->getSmarty()->assign('title', 'ERROR');
          $this->getSmarty()->assign('text', $mensagge);
          $this->getSmarty()->assign('categorys', $categorys);
-         $this->getSmarty()->assign('admin',$array['priority']);
-         $this->getSmarty()->assign('username',$array['name']);
+         if($array){
+            $this->getSmarty()->assign('admin', $array['priority']);   
+            $this->getSmarty()->assign('username', $array['name']);
+        }else
          $this->getSmarty()->display('templates/error.tpl'); 
         }  
 }

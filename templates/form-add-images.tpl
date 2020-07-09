@@ -1,4 +1,4 @@
-<form action="addImgs" method="POST" enctype="multipart/form-data">
+<form action="addCapturas" method="POST" enctype="multipart/form-data">
     
 {* seleciono juego al que deseo cargar imegenes *}
 <input class="oculto" value="{$game->id}" name="gameId">

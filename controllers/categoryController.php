@@ -8,12 +8,10 @@ include_once ('Controller.php');
      *  Muetra pagina principal haciendo un listado de categorias 
      */
     public function showAllCategory(){
-
-         $array =  $this->user();
+        $array =  $this->user();
         $categorysid = $this->getmodelcategoty()->getAllCategory();  
         $this-> getgameview()->viewHome($categorysid, $array);
       }
-
 
      /**
      *  elimina categoria por selecion de if en un form
@@ -28,8 +26,7 @@ include_once ('Controller.php');
               header("Location: adminView");
            }
     }
-   
-     
+        
      /**
      * Funcion para añadir categoria nueva y agragarla en la base de datos
      */

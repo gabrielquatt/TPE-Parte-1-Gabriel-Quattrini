@@ -3,7 +3,7 @@
 require_once('controllers/LoginController.php');
 require_once('controllers/GameController.php');
 require_once('controllers/CategoryController.php');
-require_once('controllers/ImageController.php');
+require_once('controllers/CaptureController.php');
 
 define('URLBASE', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -89,9 +89,9 @@ switch ($urlParts[0]) {
         $categoryController->addCategory();
         break;
 
-    case 'addImgs':
-        $gameController =  new ImageController();
-        $gameController->addImgs();
+    case 'addCapturas':
+        $gameController =  new CaptureController();
+        $gameController->addCapturas();
         break;
 
     case 'editGame':
@@ -100,7 +100,7 @@ switch ($urlParts[0]) {
         break;
 
     case 'editImg':
-        $gameController =  new ImageController();
+        $gameController =  new CaptureController();
         $gameController->editImg();
         break;
 
@@ -120,12 +120,12 @@ switch ($urlParts[0]) {
         break;
 
     case 'deletePortada':
-        $gameController =  new ImageController();
+        $gameController =  new CaptureController();
         $gameController->deletePortada($urlParts[1]);
         break;
 
     case 'deleteCaptura':
-        $gameController =  new ImageController();
+        $gameController =  new CaptureController();
         $gameController->deleteCaptura($urlParts[1],$urlParts[2]);
         break;
 

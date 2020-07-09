@@ -21,16 +21,6 @@ class LoginController extends Controller
     }
 
     /**
-     * Funcion que destruira cualquier session iniciada
-     * 
-     */
-    public function logout()
-    {
-        AuthHelper::logout();
-        header('Location: ' . URLBASE . 'login');
-    }
-
-    /**
      * Function para ver tofos los ususarios y editar permisos
      * 
      */
@@ -45,24 +35,6 @@ class LoginController extends Controller
         } else {
             $this->accessError();
         }
-    }
-
-    /**
-     * Funcion para cargar login 
-     * 
-     */
-    public function getLogin()
-    {
-        $this->getloginview()->showLogin();
-    }
-
-    /**
-     * Funcion para cargar Registro
-     *
-     */
-    public function openRegister()
-    {
-        $this->getloginview()->showRegister();
     }
 
     /**
@@ -125,6 +97,7 @@ class LoginController extends Controller
             header('Location: ' . URLBASE . "adminView");
         } else {
             header('Location: ' . URLBASE . "login ");
+            var_dump($userDb );
         }
     }
 
@@ -159,5 +132,33 @@ class LoginController extends Controller
     {
         $this->getusermodel()->userDelete($idUser);
         header("Location: ../viewUser");
+    }
+    
+    /**
+     * Funcion que destruira cualquier session iniciada
+     * 
+     */
+    public function logout()
+    {
+        AuthHelper::logout();
+        header('Location: ' . URLBASE . 'login');
+    }
+    
+    /**
+     * Funcion para cargar login 
+     * 
+     */
+    public function getLogin()
+    {
+        $this->getloginview()->showLogin();
+    }
+
+    /**
+     * Funcion para cargar Registro
+     *
+     */
+    public function openRegister()
+    {
+        $this->getloginview()->showRegister();
     }
 }

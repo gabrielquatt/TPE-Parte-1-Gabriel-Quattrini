@@ -1,7 +1,7 @@
 {literal}
 
 <section class="fond-text" id="addComment"> 
-      <h4>comentar y calificar </h4>
+      <h4>comentar y calificar (opcional) </h4>
      <p class="clasificacion">
      <p>{{ star }}</p>
     <input  class="stars" id="radio1" type="radio" v-on:click="one_stars" >

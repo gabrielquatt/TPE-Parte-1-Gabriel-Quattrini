@@ -48,10 +48,9 @@ class AuthHelper {
                     $data['priority'] = $_SESSION['PRIORITY'];           
                     return $data;
                 }
-                $data['priority'] =null;
+                $data['priority'] = null;
             return $data;
          } 
-       
     }
 
     /**

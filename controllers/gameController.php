@@ -3,7 +3,6 @@
 include_once ('Controller.php');
 
 class GameController extends Controller{        
-   
   
    /**
      *  Trae y muestra todos los detalles de los juegos llamado por "all games"
@@ -32,7 +31,7 @@ class GameController extends Controller{
       $array =  $this->user();
       $categorys = $this->getmodelcategoty()->getAllCategory();
       $game = $this-> getgamemodel()->getGame($gameID);  
-      $images = $this->getImageModel()->allImagesId($gameID);
+      $images = $this->getCaptureModel()->allImagesId($gameID);
       $this-> getgameview()->viewGameDetail($game,$categorys,$array,$images);  
      }
 

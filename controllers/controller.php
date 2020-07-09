@@ -7,7 +7,7 @@ include_once ('views/ErrorView.php');
 include_once ('models/CategoryModel.php');
 include_once ('models/GameModel.php');
 include_once ('models/UserModel.php');
-include_once ('models/ImageModel.php');
+include_once ('models/CaptureModel.php'); 
 
  class Controller {
         private $user;
@@ -18,15 +18,15 @@ include_once ('models/ImageModel.php');
         private $modelCategory;
         private $modelGame;
         private $modelAdmin;
-        private $modelImage;
+        private $modelCapture;
 
         public function __construct(){
-            $this->user =AuthHelper::getDataUser();
+            $this->user = AuthHelper::getDataUser();
             $this->modelCategory = new CategoryModel();
             $this->modelGame = new GameModel();
             $this->modelAdmin = new userModel();
-            $this->modelImage = new ImageModel();
-            $this->gameView = new gameView();
+            $this->modelCapture = new CaptureModel(); 
+            $this->gameView = new GameView();
             $this->adminView = new adminView();
             $this->errorView = new errorView();
             $this->login = new loginView();
@@ -41,8 +41,8 @@ include_once ('models/ImageModel.php');
     public function getusermodel(){
         return $this->modelAdmin;
     }
-    public function getImageModel(){
-        return $this->modelImage;
+    public function getCaptureModel(){
+        return $this->modelCapture;
     }
     public function getgameview(){ 
         return $this->gameView;

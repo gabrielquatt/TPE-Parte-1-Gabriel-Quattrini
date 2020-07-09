@@ -25,10 +25,6 @@ class ApiController
     {
         return $this->gameModel;
     }
-    public function modelCategory()
-    {
-        return $this->categoryModel;
-    }
     public function ApiView()
     {
         return $this->view;
@@ -37,7 +33,6 @@ class ApiController
     {
         return $this->comment;
     }
-
     function getData()
     {
         return json_decode($this->data);

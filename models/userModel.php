@@ -4,32 +4,27 @@ require_once('model.php');
 
 class userModel extends model{
   
-    /**
-     * Retorna un usuario según el email pasado.
-     */
-    public function getUserByUsername($username){
-        $query = $this->getdb()->prepare('SELECT * FROM registry WHERE username = ?');
+    public function getUserByUsername($username){//TODO arreglar para no traer password
+        $query = $this->getdb()->prepare('SELECT * FROM registry  WHERE username = ?');
         $query->execute(array(($username)));
         return $query->fetch(PDO::FETCH_OBJ);
     }
-     public function admiAcces($username) {
-         $query = $this->getdb()->prepare('SELECT * FROM `registry` WHERE `username` = ? AND `priority` = 1');
+    public function getUsers($userName){//TODO arreglar para no traer password
+       $query = $this->getdb()->prepare('SELECT `username`,`email` FROM `registry` WHERE `username` != ?');
+       $query->execute([$userName]);
+       return $query->fetchAll(PDO::FETCH_OBJ);     
+    }
+     public function admiAcces($username) {//TODO arreglar para no traer password
+         $query = $this->getdb()->prepare('SELECT `username`,`priority` FROM `registry` WHERE `username` = ? AND `priority` = 1');
          $query->execute([$username]);
          return $query->fetchAll(PDO::FETCH_OBJ);
      }
-    
-     public function getAllEmail($email){
-        $query = $this->getdb()->prepare('SELECT * FROM `registry` WHERE `email` = ?');
+     public function getAllEmail($email){//TODO arreglar para no traer password
+        $query = $this->getdb()->prepare('SELECT `email` FROM `registry` WHERE `email` = ?');
         $query->execute([$email]);
         return $query->fetchAll(PDO::FETCH_OBJ);     
      }
-     public function getUsers($userName){
-        $query = $this->getdb()->prepare('SELECT * FROM `registry` WHERE `username` != ?');
-        $query->execute([$userName]);
-        return $query->fetchAll(PDO::FETCH_OBJ);     
-     }
      public function  saveUser($userName,$email,$pass){
-                //TODO guardar usuario DB
         $query = $this->getdb()->prepare('INSERT INTO `registry` (`username`,`email`,`password`) VALUES (?,?,?)');
         return $query->execute([$userName,$email,$pass,]);
     }
@@ -41,7 +36,5 @@ class userModel extends model{
         $query = $this->getdb()->prepare('DELETE FROM `registry` WHERE id = ?');
         $query->execute([$idUser]);
     }
-
-    
 }
 ?>
