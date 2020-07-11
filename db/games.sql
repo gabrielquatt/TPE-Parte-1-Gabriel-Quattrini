@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-06-2020 a las 09:49:32
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.1.33
+-- Tiempo de generación: 11-07-2020 a las 04:04:04
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,6 +20,71 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `games`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `capturas`
+--
+
+CREATE TABLE `capturas` (
+  `id` int(11) NOT NULL,
+  `id_game_fk` int(11) NOT NULL,
+  `captura` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `capturas`
+--
+
+INSERT INTO `capturas` (`id`, `id_game_fk`, `captura`) VALUES
+(17, 85, 'img/capturas/5f090f9fc3e84.jpg'),
+(18, 85, 'img/capturas/5f090f9fc9a72.jpg'),
+(19, 85, 'img/capturas/5f090f9fca7ca.jpg'),
+(20, 85, 'img/capturas/5f090f9fcace8.jpg'),
+(21, 86, 'img/capturas/5f09103fc7743.jpg'),
+(22, 86, 'img/capturas/5f09103fc828d.jpg'),
+(23, 86, 'img/capturas/5f09103fc8a87.jpg'),
+(24, 86, 'img/capturas/5f09103fc9d04.jpg'),
+(25, 87, 'img/capturas/5f09124605a5e.jpg'),
+(26, 87, 'img/capturas/5f09124606b88.jpg'),
+(27, 87, 'img/capturas/5f091246078de.jpg'),
+(28, 88, 'img/capturas/5f0912e91a7b0.jpg'),
+(29, 88, 'img/capturas/5f0912e91ad1c.jpg'),
+(30, 88, 'img/capturas/5f0912e91b1f4.jpg'),
+(31, 89, 'img/capturas/5f091373aa4d0.jpg'),
+(32, 89, 'img/capturas/5f091373aab63.jpg'),
+(33, 89, 'img/capturas/5f091373aafd7.jpg'),
+(34, 90, 'img/capturas/5f09140d64856.jpg'),
+(35, 90, 'img/capturas/5f09140d64dc1.jpg'),
+(36, 90, 'img/capturas/5f09140d65237.jpg'),
+(37, 91, 'img/capturas/5f0914b834694.jpg'),
+(38, 91, 'img/capturas/5f0914b834cd2.jpg'),
+(39, 91, 'img/capturas/5f0914b8351a8.jpg'),
+(40, 92, 'img/capturas/5f09158ec9b4e.jpg'),
+(41, 92, 'img/capturas/5f09158ecbaab.jpg'),
+(42, 92, 'img/capturas/5f09158ecc393.jpg'),
+(43, 93, 'img/capturas/5f09163935678.jpg'),
+(44, 93, 'img/capturas/5f09163935cb3.jpg'),
+(45, 93, 'img/capturas/5f091639361e9.jpg'),
+(46, 94, 'img/capturas/5f0916da68808.jpg'),
+(47, 94, 'img/capturas/5f0916da68d76.jpg'),
+(48, 94, 'img/capturas/5f0916da691e6.jpg'),
+(49, 95, 'img/capturas/5f09178609a6d.jpg'),
+(50, 95, 'img/capturas/5f0917860a116.jpg'),
+(51, 95, 'img/capturas/5f0917860a734.jpg'),
+(52, 96, 'img/capturas/5f091824aa52b.jpg'),
+(53, 96, 'img/capturas/5f091824aad18.jpg'),
+(54, 96, 'img/capturas/5f091824ab1dc.jpg'),
+(55, 97, 'img/capturas/5f09189ba5aa8.jpg'),
+(56, 97, 'img/capturas/5f09189ba61f9.jpg'),
+(57, 97, 'img/capturas/5f09189ba73de.jpg'),
+(58, 98, 'img/capturas/5f09192c2374a.jpg'),
+(59, 98, 'img/capturas/5f09192c23d09.jpg'),
+(60, 98, 'img/capturas/5f09192c2486e.jpg'),
+(61, 99, 'img/capturas/5f091a352077e.jpg'),
+(62, 99, 'img/capturas/5f091a3520eb8.jpg'),
+(63, 99, 'img/capturas/5f091a35213df.jpg');
 
 -- --------------------------------------------------------
 
@@ -60,35 +124,8 @@ CREATE TABLE `commentary` (
   `user` varchar(80) NOT NULL,
   `comentario` varchar(500) NOT NULL,
   `fecha` date NOT NULL,
-  `calificacion` int(11) NOT NULL
+  `calificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `commentary`
---
-
-INSERT INTO `commentary` (`id`, `id_game`, `user`, `comentario`, `fecha`, `calificacion`) VALUES
-(5, 57, 'admin', 'juegaso', '0000-00-00', 8),
-(6, 57, 'admin', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0000-00-00', 19),
-(23, 63, 'tudai', 'sdasdasda', '0000-00-00', 4),
-(24, 63, 'tudai', 'me parece un juego agradable', '0000-00-00', 5),
-(25, 63, 'tudai', 'este juego es una cagada ', '0000-00-00', 1),
-(26, 63, 'tudai', 'Is this the real life? Is this just fantasy? Caught in a landslide No escape from reality Open your eyes Look up to the skies and see I\'m just a poor boy I need no sympathy Because I\'m easy come, easy go Little high, little low Anyway the wind blows doesn\'t really matter to me, to me', '0000-00-00', 5),
-(27, 61, 'tudai', 'Mama, just killed a man Put a gun against his head pulled my trigger, now he\'s dead', '0000-00-00', 5),
-(87, 59, 'gabriel', 'hola', '0000-00-00', 3),
-(88, 59, 'gabriel', 'sin comentarios la verdad estoy probando que tal es', '0000-00-00', 5),
-(89, 59, 'gabriel', 'dcdscscsd', '0000-00-00', 2),
-(103, 56, 'tudai', 'easddfsddfsdfsdfsd', '0000-00-00', 4),
-(107, 56, 'tudai', 'gdfgdfgd', '0000-00-00', 4),
-(115, 64, 'tudai', 'asdfas', '0000-00-00', 2),
-(142, 58, 'gabriel', 'vhvhbhjn', '0000-00-00', 7),
-(143, 58, 'gabriel', 'asdasd', '0000-00-00', 3),
-(144, 58, 'gabriel', 'sdsa', '0000-00-00', 0),
-(145, 58, 'gabriel', 'sadddddddddda', '0000-00-00', 3),
-(166, 56, 'tudai', '32423', '2020-06-26', 3),
-(167, 61, 'lucila', 'la verdad me parece una cagada el juego', '2020-06-26', 4),
-(168, 61, 'lucila', 'se puede comentar', '2020-06-26', 5),
-(172, 71, 'gabriel', 'sadasdas', '2020-06-26', 4);
 
 -- --------------------------------------------------------
 
@@ -109,19 +146,21 @@ CREATE TABLE `game` (
 --
 
 INSERT INTO `game` (`id`, `name`, `detail`, `id_category`, `image`) VALUES
-(55, 'watch dogs 2', 'Watch Dogs 2 es un muy popular videojuego de acción y mundo abierto secuela del primer Watch Dogs. El juego combina Sigilo y disparos en tercera persona estando ambientado en la ciudad de San Francisco. El jugador toma el papel de Marcus Holloway, un hacker que se une al grupo hacktivista para descubrir y revelar al público los manejos del Sistema Operativo «ctOS» e investigar como las empresas y el estado utilizan la información recolectada para controlar a la población. Explora un mundo abierto y dinámico, lleno de posibilidades. Hackea todos los dispositivos conectados y hazte con el control de la infraestructura de la ciudad. Desarrolla habilidades según tu estilo de juego y mejora tus herramientas de hacker.', 1, 'img/portada/5edc25c3834a1.jpg'),
-(56, 'halo', 'Halo The Master Chief Collection Después de varios años por fin llega la saga más emblemática de HALO a PC, la Master Chief Collection, una serie que cambió la forma de jugar en consola. Seis juegos increíbles en una experiencia épica con lanzamientos periódicos y cada juego disponible de forma individual. esta colección Incluye Halo: Reach, Halo: Combat Evolved Anniversary, Halo 2: Anniversary, Halo 3, la campaña de Halo 3: ODST y Halo 4. Totalmente optimizada para PC compatible con teclado y ratón, características nativas para PC y hasta 4K UHD y HDR. Cada juego incluirá nuevos mapas multijugador, modos y tipos de juego, lo que creará una nueva experiencia multijugador que irá creciendo con el tiempo', 1, 'img/portada/5edc26106d909.jpg'),
-(57, 'metro exodus', 'Metro Exodus es un nuevo videojuego de acción y disparos en primera persona del genero survival horror post apocalíptico. además de contener elementos de exploración y sigilo. Es el tercer juego de la saga Metro. Nuevamente, el jugador toma el control de Artyom, un explorador del ejército ruso. En el papel de este explorador podremos buscar recursos para modificar y mejorar nuestras armas, teniendo que hacerle frente a bestias mutantes y humanos hostiles en diferentes condiciones climáticas. El juego también cuenta con un ciclo de día y noche. aun que el juego cuenta con mucha libertad para explorar similar a titulos de mundo abierto seguirá teniendo un estilo lineal similar al de los dos juegos anteriores.​ Al igual que su predecesor, Metro: Last Light, el jugador deberá tomar decisiones importantes para salvar a sus compañeros y amigos, teniendo como resultado múltiples finales.', 1, 'img/portada/5edc26f001fe8.jpg'),
-(58, 'state of decay 2', 'State Of Decay 2 es un videojuego de acción y supervivencia en tercera persona exclusivo del sistema operativo windows 10 y xbox one. el juego se ambienta en un entorno de mundo abierto infestado por zombis y presenta un modo de juego en solitario y cooperativo con hasta 4 jugadores. Construye tu base, desarrolla tus personajes y gestiona los recursos a tu alrededor para sobrevivir como grupo en este mundo zombi postapocalíptico. Desarrolla las habilidades de cada superviviente para mejorar su capacidad y fortalecer tu grupo. En el apocalipsis zombi, debes crear tu propio código de moral. Cada decisión tiene consecuencias que debes afrontar. Cómo decidas sobrevivir puede que te sorprenda.\r\n\r\n', 1, 'img/portada/5edc273089841.jpg'),
-(59, 'world war z', 'World War Z es un videojuego de acción y disparos en tercera persona que se basa en la supervivencia durante un apocalipsis zombi. Tu objetivo es sobrevivir a las hordas de zombis que azotan el mundo y además acabar con todos los que puedas. El juego está inspirado pero no basado en la película y novela del mismo nombre de la empresa Paramount. El juego es cooperativo y es posible jugarlo hasta de 4 jugadores. El juego tiene lugar en diferentes lugares del planeta como Nueva York, Moscú o Jerusalén.', 1, 'img/portada/5edc27d41a0d2.jpg'),
-(60, 'call of duty wwii', 'Call of Duty vuelve a sus raíces con Call of Duty: WWII, una experiencia que redefine la Segunda Guerra Mundial para toda una nueva generación de jugadores. Desembarca en Normandía el Día D y combate por toda Europa en algunos de los escenarios más emblemáticos de la guerra más conocida de la historia. Vive el combate clásico de Call of Duty, los lazos de camaradería y la naturaleza imperdonable de la guerra contra una potencia global que sume al mundo en la tiranía. Call of Duty: WWII acerca la experiencia definitiva de la Segunda Guerra Mundial a la nueva generación con tres modos de juego diferentes: campaña, multijugador y cooperativo. La campaña y sus espectaculares gráficos trasladan a los jugadores al teatro europeo para sumergirse en una nueva historia de Call of Duty ambientada en las icónicas batallas de la Segunda Guerra Mundial.', 1, 'img/portada/5edc282d9aeeb.jpg'),
-(61, ' grand theft auto 5', 'Grand Theft Auto: V es una especie de secuela del cláisco GTA: San Andreas. Regresarás a la mítica ciudad de Los Santos para embarcarte en una aventura con tres protagonistas: Franklin, Michael y Trevor. Franklin es un gánster del gueto, Michael es un atracador de bancos y Trevor es un psicópata de la América Profunda. Grand Theft Auto V o GTA 5 es un videojuego de acción y aventura de mundo abierto (sandbox) desarrollado por Rockstar North y distribuido por Rockstar Games. Este ultimo quiso cambiar la jugabilidad de GTA V en comparación a las anteriores entregas. En esta ocasión la compañía combinó los movimientos fluidos del juego Red Dead Redemption, como por ejemplo correr o cubrirse, y los efectos del juego Max Payne 3 como el bullet time, para esa sensación de primera persona en un juego de tercera persona.', 1, 'img/portada/5edc289de12e5.jpg'),
-(62, 'sniper 3', 'Sniper: Ghost Warrior 3 es un videojuego FPS de acción y tercer videojuego de la serie Sniper Ghost Warrior. Los jugadores toman el papel de un francotirador estadounidense en una misión en Georgia, cerca de la frontera rusa. Las misiones se pueden completar de diferentes formas a lo largo de un grandioso mundo abierto. Ataca a tus enemigos desde lejos. Ten en cuenta la elevación de la mira, la velocidad y la dirección del viento, el control de la respiración y la postura, junto con la elección del arma y la munición. Sistema inteligente de sigilo incluye el reconocimiento con dron. Gran variedad de armas avanzadas y modifícalas según las necesidades de la misión y tu estilo personal.', 1, 'img/portada/5edc28f38cf96.jpg'),
-(63, 'assassin’s creed odyssey', 'Assassin’s Creed Odyssey es la nueva entrega de la tan popular saga de videojuegos Assassin’s Creed. Embárcate en una odisea para descubrir los secretos del pasado y cambiar el destino de la antigua Grecia. Recorre islas volcánicas, frondosos bosques y ciudades bulliciosas en un viaje de exploración y encuentros en un mundo ya en guerra forjado por Dioses y hombres. Tus decisiones influirán en el devenir de tu odisea. Tu juego puede tener distintos finales gracias al nuevo sistema de diálogos y a las decisiones que tomes. Personaliza tu equipo, el barco y tus habilidades especiales para convertirte en leyenda. Demuestra tus habilidades de lucha en batallas a gran escala entre Atenas y Esparta con cientos de soldados. Embiste y ábrete paso a través de flotas enteras en las batallas navales del mar Egeo. La función de vision extendida te ofrece una perspectiva más amplia. La iluminación dinámica y los efectos de luz solar te sumergen en las arenosas dunas dependiendo de cuál sea tu objetivo.\r\n\r\n', 1, 'img/portada/5edc296fb9059.jpg'),
-(64, ' doom', 'Doom 2016 es un videojuego del genero FPS (shooter en primera persona) y cuarto titulo de la saga Doom. En esta entrega los jugadores toman el papel de un marine espacial desconocido mientras pelea contra las fuerzas demoníacas del infierno que han sido liberadas por la Unión Aerospace Corporation en Marte, ahora colonizado. La jugabilidad vuelve a un ritmo más rápido con más niveles abiertos, más cerca de los primeros 2 juegos que el enfoque más lento de terror de supervivencia de Doom 3. También cuenta con recorrido de entorno, mejoras de personaje y la capacidad de realizar ejecuciones conocidas como «muertes gloriosas». El juego también es compatible con un componente multijugador en línea y un editor de niveles conocido como «SnapMap».', 1, 'img/portada/5edc2a1d64384.jpg'),
-(68, 'aaaa', 'sadadasdas', 1, 'img/portada/5ef59a0d1d5f6.jpg'),
-(70, 'asdasdas', 'asdasdasd', 123, 'img/portada/5ef5988b0ee5a.jpg'),
-(71, 'prueba', 'zxcxzczxczxc', 123, 'img/portada/5ef5a61db2376.jpg');
+(85, 'fallout 4 ', 'allout 4 es un videojuego de acción con toques de rol en un mundo abierto post apocalíptico, es la 4ta entrega de la saga de videojuegos Fallout de Bethesda Game Studios, Creadores también del galardonado The Elder Scrolls V: Skyrim. Eres el único superviviente del Refugio 111 en un mundo desolado y destruido por la guerra nuclear. En tus manos estarán todas las decisiones. Solo tú puedes reconstruir el lo que queda y decidir su futuro. Podrás Hacer lo que quieras en un gigantesco mundo abierto con cientos de ubicaciones, personajes y misiones. Únete a diversas facciones que ansían hacerse con el poder o vete por tu cuenta', 1, 'img/portada/5f090f8d34cf9.jpg'),
+(86, 'f.e.a.r. 2: project origin', 'F.E.A.R. 2: Project Origin es el nombre de la secuela del videojuego F.E.A.R., desarrollado por Monolith Productions, para Xbox 360, PlayStation 3 y PC. La historia comienza 30 minutos antes de que finalizara la primera entrega y se centra en Michael Becket, que forma parte de un comando Delta Force enviado a capturar a Genevieve Aristide, ejecutiva de Armacham, para interrogarla ya que fue la responsable de, en la primera entrega, reabrir la cámara donde estaba Alma que fue lo que desató el caos en la ciudad. Una vez allí sufren los efectos de la explosión que afecta la ciudad (originada por Pointman en el final del primer juego) y los integrantes del comando Delta quedan inconscientes. En ATC ha tomado el poder la junta directiva y ha ordenado destruir todas las instalaciones y liquidar a cualquier sobreviviente para dejar así sin pruebas de lo sucedido. Luego de la explosión y quedar inconsciente, Becket despierta en un hospital de Armachan donde Genevieve planea experimentar con el sujeto para aumentar sus poderes psíquicos, como parte del Proyecto Harbinger, objetivo que logra luego de enfrentar a la gente de Armachan que planea destruir el lugar.', 2, 'img/portada/5f09102785d49.jpg'),
+(87, ' tomb raider', 'Tomb Raider 2013 es un videojuego de acción-aventura y plataformas desarrollado por Crystal Dynamics. Es el noveno título de la serie Tomb Raider y el quinto título desarrollado por Crystal Dynamics. El juego relata los intensos y conflictivos orígenes de Lara Croft y su transformación de joven asustadiza a endurecida superviviente. Al principio de la historia Lara muestra miedo ante el peligro, pues carece de confianza en sus propias capacidades y juicio. Aun así, ya vemos gérmenes de lo que será la futura Lara. El juego transcurre en Yamatai, una isla del Triángulo del Dragón en la costa de Japón. La isla y el reino que una vez existió ahí está rodeada de misterio, debido a las tormentas y corrientes marítimas que la rodean. Yamatai fue gobernada por la Reina del Sol, llamada Himiko, quien acorde a la leyenda, tenía poderes místicos que la permitían controlar el tiempo atmosférico. El jugador toma el rol de Lara Croft, una joven y ambiciosa arqueóloga cuyas teorías acerca del reino perdido de Yamatai convencieron a los descendientes de Nishimura que eran parientes de la gente de Yamatai, así que organiza una expedición para buscar el reino.', 3, 'img/portada/5f09122ed044f.jpg'),
+(88, 'blasphemous', 'Blasphemous es un videojuego muy esperado por los amantes del genero metroidvania. En este videojuego de acción con gráficos pixel detallados de gran calidad explorarás un mundo terrible con una religión retorcida y descubrirás los secretos que aguardan. Realiza increíbles combos y ejecuciones brutales para castigar a las hordas de monstruos deformes y jefes titánicos dispuestos a exterminarte. Encuentra y equípate reliquias, cuentas de rosario y plegarias que te darán los poderes fervorosos para ayudarte a acabar con tu maldición.', 1, 'img/portada/5f0912d96f946.jpg'),
+(89, 'age of empires: definitive edi', 'Age Of Empires: Definitive Edition es una gran remasterización del clásico Age of Empire desarrollado por Microsoft Games. Una revisión que llega tras el 20 aniversario del lanzamiento original. Uno de los primeros videojuegos de estrategia para PC que definió el género vuelve con soporte 4K y adaptado a los nuevos tiempos. En Age of Empires: Definitive Edition tomamos las riendas de las grandes civilizaciones clásicas: egipcios, babilonios, fenicios, persas, griegos, romanos o cartagineses entre otros. Gestiona los recursos, construye edificios y luego crea un ejército para vencer a las otras civilizaciones. Disfruta de las diversas campañas para un jugador o mide tu destreza con otros jugadores en el modo multijugador. Una oportunidad para demostrar el poder de nuestra civilización.', 4, 'img/portada/5f09133027461.jpg'),
+(90, 'resident evil 5', 'Resident Evil 5 (abreviado comúnmente como RE5) conocido en Japón como Biohazard 5. Es un videojuego de acción-aventura del estilo survival horror desarrollado por Capcom y distribuido por la misma en colaboración con THQ Asia Pacific. La historia del juego sigue a Chris Redfield, uno de los supervivientes del desastre de la mansión Spencer. Éste es enviado junto con Sheva Alomar a investigar una amenaza terrorista en Kijuju, un pueblo ficticio ubicado en el continente africano. Al llegar a dicho lugar, son atacados por sus habitantes que han sido infectados por una extraña especie de virus que los vuelve violentos. Al igual que otros títulos de la serie, el videojuego es de acción-aventura del estilo survival horror. Siguiendo los pasos de su antecesor, incluye inmensos y dinámicos escenarios debido a que la trama se basa en una aldea africana. El sistema de juego es similar a Resident Evil 4, con la diferencia de que se ha añadido un personaje que acompaña al protagonista en toda la historia. Esto puede favorecer o perjudicar en ciertos aspectos al jugador, siendo uno de los beneficios la ayuda que brinda Sheva en ciertas ocasiones, mientras que uno de sus contras es el racionamiento de la munición para ambos personajes. Por otro lado, incluye una gran variedad de contenido desbloqueable como minijuegos, trajes secretos, armas infinitas, texturas para los escenarios y otros extras disponibles.', 2, 'img/portada/5f0913c0193a4.jpg'),
+(91, 'ark: survival evolved', 'ARK: Survival Evolved es un increíble videojuego que mezcla varios géneros como la acción, el rol, el mundo abierto, crafting y la supervivencia y que se a hecho muy popular en estos últimos años. Puedes jugar como un personaje femenino o masculino que llega a un mundo prehistórico en una isla misteriosa. Al principio estaremos desnudos y con hambre, para sobrevivir tendremos que cazar, cultivar, crear objetos, y construir refugios para protegernos de los peligrosos dinosaurios y criaturas que habitan la isla. Lo mejor es que podremos, criar, domesticar y cabalgar dinosaurios y otras criaturas primitivas.', 5, 'img/portada/5f0914aa76c5b.jpg'),
+(92, 'grand theft auto: v', 'Grand Theft Auto: V es una especie de secuela del cláisco GTA: San Andreas. Regresarás a la mítica ciudad de Los Santos para embarcarte en una aventura con tres protagonistas: Franklin, Michael y Trevor. Franklin es un gánster del gueto, Michael es un atracador de bancos y Trevor es un psicópata de la América Profunda. Grand Theft Auto V o GTA 5 es un videojuego de acción y aventura de mundo abierto (sandbox) desarrollado por Rockstar North y distribuido por Rockstar Games. Este ultimo quiso cambiar la jugabilidad de GTA V en comparación a las anteriores entregas. En esta ocasión la compañía combinó los movimientos fluidos del juego Red Dead Redemption, como por ejemplo correr o cubrirse, y los efectos del juego Max Payne 3 como el bullet time, para esa sensación de primera persona en un juego de tercera persona', 5, 'img/portada/5f09156f5a685.jpg'),
+(93, 'tropico 6', 'Tropico 6 es la ultima entrega de la saga tropico, nuevamente encarnaremos «al presidente» el cual tendremos la libertad de volvernos un dictador o un gobernante honesto. Elige el futuro de tu nación durante cuatro eras diferentes. Por primera vez en la saga, podremos jugar en archipiélagos enormes. Gobernar varias islas al mismo tiempo y enfrentarnos a nuevos desafíos. Envía a tus hombres a tierras extranjeras para hurtar las maravillas del mundo y otros monumentos para agregarlos a tu colección en tu bello país. construye puentes, túneles y transporta a tus ciudadanos y turistas en taxis, autobuses y teleféricos. Tropico 6 ofrece medios de transporte e infraestructuras totalmente nuevas.', 6, 'img/portada/5f0915d20d985.jpg'),
+(94, ' one punch man', 'One Punch Man: A Hero Nobody Knows es un videojuego de lucha basado en el Anime/Manga «One Punch Man» en el cual podrás elegir a tu personaje favorito de la serie o crear uno propio gracias al «creador de heroes». Crea tu propio avatar de y elige tu propio conjunto de habilidades y poderes.', 8, 'img/portada/5f09169490352.jpg'),
+(95, 'snowrunner a mudrunner', 'SnowRunner: A MudRunner Game es un videojuego de simulación y conducción de camiones de carga sobre un terreno montañoso nevado. Conduce vehículos potentes de marcas como Ford y Chevrolet, mientras conquistas entornos abiertos extremos de terreno más avanzado de la historia. Supere el lodo, las aguas torrenciales, la nieve y los lagos congelados mientras asume peligrosos contratos y misiones. Expande y personaliza tu flota con muchas mejoras y accesorios, incluido un tubo de escape para aguas pesadas o llantas de cadena para combatir la nieve. Viaja solo o juega con otros jugadores en el modo cooperativo para 4 jugadores y amplía tu experiencia con mods creados por la comunidad. 40 vehículos únicos para desbloquear, actualizar y personalizar. Completa docenas de misiones desafiantes en un mundo interconectado.', 7, 'img/portada/5f091772c4b3a.jpg'),
+(96, 'state of decay 2: juggernaut', 'State Of Decay 2 es un videojuego de acción y supervivencia en tercera persona exclusivo del sistema operativo windows 10 y xbox one. el juego se ambienta en un entorno de mundo abierto infestado por zombis y presenta un modo de juego en solitario y cooperativo con hasta 4 jugadores. Construye tu base, desarrolla tus personajes y gestiona los recursos a tu alrededor para sobrevivir como grupo en este mundo zombi postapocalíptico. Desarrolla las habilidades de cada superviviente para mejorar su capacidad y fortalecer tu grupo. En el apocalipsis zombi, debes crear tu propio código de moral. Cada decisión tiene consecuencias que debes afrontar. Cómo decidas sobrevivir puede que te sorprenda.', 1, 'img/portada/5f091812e7282.jpg'),
+(97, ' mafia ii', 'Mafia II Definitive Edition es una remasterización del segundo videojuego de la saga Mafia. El juego cuenta con mejora de texturas. Juega como un mafioso en una Empire Bay, Nueva York de los Años 40 y 50. Date la gran vida de gánster en una edad de oro en donde el crimen organizado tiene el control. El jugador toma el papel de Vito Scaletta un sujeto que se une a la mafia para pagar las deudas de su padre. Junto a su colega Joe, intentará ascender en la familia por medio de crímenes de recompensas.', 1, 'img/portada/5f09188c974a1.jpg'),
+(98, 'blair witch ', 'Blair Witch es un videojuego del genero de Terror y Supervivencia ambientado en el universo cinematográfico de La Bruja de Blair que te mantendrá con los nervios de punta y sacará a flote tus reacciones al miedo y al estrés. La trama del juego transcurre durante el año 1996. Un niño ha desaparecido en el bosque de Black Hills, a las afueras de Burkitsville, Maryland. El jugador tomará el papel de Ellis el cual se ha unido a la búsqueda del niño, Ellis es un ex-agente de policía con un pasado turbio. Lo que empieza como una investigación policial normal, pronto se convertirá en una pesadilla sin fin a medida que te enfrentes a tus miedos y a la bruja de Blair, una misteriosa entidad que habita el bosque.', 2, 'img/portada/5f0919126ab72.jpg'),
+(99, ' outward ', 'Outward es un videojuego del tipo Acción y RPG Cooperativo o en Solitario que se desarrolla en un basto mundo abierto. Un juego que ofrece profundos desafíos satisfactorios para los jugadores más exigentes. Como un aventurero, no solo tendrás que ocultarte o defenderte de peligrosas criaturas, ademas deberás desafiar las cambiantes condiciones del clima, asegurarte de que duermes lo necesario y mantente hidratado, no valla a ser que te contagies de una enfermedad infecciosa. Encaminate en arriesgadas expediciones a lo largo de tierras salvajes para llegar a nuevas ciudades, descubre mazmorras ocultas repletas de terribles enemigos.', 3, 'img/portada/5f091a170c9c7.jpg');
 
 -- --------------------------------------------------------
 
@@ -134,23 +173,31 @@ CREATE TABLE `registry` (
   `username` varchar(100) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `priority` int(11) NOT NULL
+  `priority` int(11) NOT NULL,
+  `token` varchar(25) NOT NULL,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `registry`
 --
 
-INSERT INTO `registry` (`id`, `username`, `email`, `password`, `priority`) VALUES
-(8, 'gabriel', 'gabrielmatiasquattrini@gmail.com', '$2y$10$xXs3P1WiE7V03V1tK/r3..BtthlgtJTZkptTmEgFFUQafv8gt3VoK', 1),
-(24, 'admin', '366@fff', '$2y$10$BYnJqDGPnDYRnKOE0pHkzu9Sk/f//dlZDEnBeO3.d9ZE2r4hRfjU2', 0),
-(25, '1234', '1234@1234', '$2y$10$/3zSAPikdJlVxsjIbCmP1eBtztHS776ZwDav.VZrbU4ndYSLO/aTi', 0),
-(26, 'tudai', 'tudai@gmail', '$2y$10$.cpYb3FSYzzGSsd4XRh/XegL2jxKIRpoxd/T7FdAXsbAk/kV2PERK', 0),
-(27, 'tudai2', 'tudai2@gmail', '$2y$10$LKMavs54RdXh0IMEOfnapezlxV61qhvAoICBpFTSXy./S8KRA9TMS', 0);
+INSERT INTO `registry` (`id`, `username`, `email`, `password`, `priority`, `token`, `date`) VALUES
+(8, 'gabriel', 'gabrielmatiasquattrini@gmail.com', '$2y$10$jXToOoVKpQvIT2ynpJD4XeVnX8a5Pzw8tbOLy1X/eadpklm7cC6Ki', 1, 'WLfUN2iQqdr9AKsk', '2020-07-12'),
+(31, 'gabriel', '2262314366@kk', '$2y$10$jXToOoVKpQvIT2ynpJD4XeVnX8a5Pzw8tbOLy1X/eadpklm7cC6Ki', 0, 'WLfUN2iQqdr9AKsk', NULL),
+(33, 'FAUSTO', '1234@1234', '$2y$10$JNNoM/7jqqXBFN.wbvZYy.xNbc1nhI5lwUrMp0MtF2Mcw5O7y/WE6', 1, '0', NULL),
+(35, 'admintudai', 'pure@conmilanesas', '$2y$10$HX4/KgWMcqGSzIaLMVgZGOPkGkNyNz5DyCI6eZbStW//LQHqy161q', 1, '', NULL);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `capturas`
+--
+ALTER TABLE `capturas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `capturas` (`id_game_fk`);
 
 --
 -- Indices de la tabla `category`
@@ -183,6 +230,12 @@ ALTER TABLE `registry`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `capturas`
+--
+ALTER TABLE `capturas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
 -- AUTO_INCREMENT de la tabla `category`
 --
 ALTER TABLE `category`
@@ -192,23 +245,29 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT de la tabla `commentary`
 --
 ALTER TABLE `commentary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT de la tabla `game`
 --
 ALTER TABLE `game`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT de la tabla `registry`
 --
 ALTER TABLE `registry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `capturas`
+--
+ALTER TABLE `capturas`
+  ADD CONSTRAINT `capturas` FOREIGN KEY (`id_game_fk`) REFERENCES `game` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `commentary`

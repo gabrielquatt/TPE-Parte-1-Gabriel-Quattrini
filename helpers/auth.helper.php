@@ -44,6 +44,7 @@ class AuthHelper {
         $data=[]; 
         if (isset($_SESSION['USERNAME'])){
             $data['name'] = $_SESSION['USERNAME'];
+            $data['email'] = $_SESSION['EMAIL'];
                 if($_SESSION['PRIORITY']==1){     
                     $data['priority'] = $_SESSION['PRIORITY'];           
                     return $data;
@@ -59,6 +60,7 @@ class AuthHelper {
     static public function login($userDB) {
         self::start();
         $_SESSION['ID_USER'] = $userDB->id;
+        $_SESSION['EMAIL'] = $userDB->email;
         $_SESSION['USERNAME'] = $userDB->username;
         $_SESSION['PRIORITY'] = $userDB->priority;
     }

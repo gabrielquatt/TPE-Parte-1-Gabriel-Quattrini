@@ -4,6 +4,7 @@ require_once('controllers/LoginController.php');
 require_once('controllers/GameController.php');
 require_once('controllers/CategoryController.php');
 require_once('controllers/CaptureController.php');
+require_once('controllers/UserController.php');
 
 define('URLBASE', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -13,10 +14,25 @@ if ($_GET['action'] == '')
 $urlParts = explode('/', $_GET['action']);
 
 switch ($urlParts[0]) {
+    
+    case 'verifyToken':
+         $loginController = new UserController();
+         $loginController->verifyToken();
+         break;
+
+    case 'check-user':
+        $loginController = new UserController();
+        $loginController->checkUser();
+        break;
 
     case 'deleteUser':
-        $loginController = new LoginController();
+        $loginController = new UserController();
         $loginController->deleteUser($urlParts[1]);
+        break;
+
+    case 'viewRecover':
+        $loginController = new LoginController();
+        $loginController->viewRecover();
         break;
 
     case 'viewUser':
@@ -25,7 +41,7 @@ switch ($urlParts[0]) {
         break;
 
     case 'editPriority':
-        $loginController = new LoginController();
+        $loginController = new UserController();
         $loginController->editPriority();
         break;
 
@@ -126,7 +142,7 @@ switch ($urlParts[0]) {
 
     case 'deleteCaptura':
         $gameController =  new CaptureController();
-        $gameController->deleteCaptura($urlParts[1],$urlParts[2]);
+        $gameController->deleteCaptura($urlParts[1], $urlParts[2]);
         break;
 
     default:

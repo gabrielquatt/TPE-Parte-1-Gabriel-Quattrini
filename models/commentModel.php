@@ -2,7 +2,7 @@
 
 require_once('model.php');
 
-class CommentModel extends model
+class CommentModel extends Model
 {
     /**
      * funcion para traer todos los comentarios de la base de datos
@@ -13,10 +13,12 @@ class CommentModel extends model
         $query->execute([$idGame]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
+/**
+ * Funcion para ordenar los comentarios de forma ASC 
+ */
     public function  commentOrderASC($idGame,$valor)
     {
-        if($valor=="fecha"){
+        if($valor=="fecha"){//consulta si la columna seleciona es "fecha" de no serlo automaticamnete ordenara Calificaciones
             $query = $this->getdb()->prepare('SELECT * FROM `commentary` WHERE id_game = ? ORDER BY fecha ASC');
         }else{
           $query = $this->getdb()->prepare('SELECT * FROM `commentary` WHERE id_game = ? ORDER BY calificacion ASC');
@@ -27,7 +29,7 @@ class CommentModel extends model
    
     public function  commentOrderDESC($idGame,$valor)
     {
-      if($valor=="fecha"){
+      if($valor=="fecha"){//consulta si la columna seleciona es "fecha" de no serlo automaticamnete ordenara Calificaciones
           $query = $this->getdb()->prepare('SELECT * FROM `commentary` WHERE id_game = ? ORDER BY fecha DESC');
       }else{
         $query = $this->getdb()->prepare('SELECT * FROM `commentary` WHERE id_game = ? ORDER BY calificacion DESC');

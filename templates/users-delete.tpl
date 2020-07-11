@@ -11,7 +11,7 @@
                 {/if}
                 <button class="btn2">
                 {$user->username}:
-                    <a href=" deleteUser/{$user->id}"> Delete user </a>
+                    <a href="deleteUser/{$user->id}"> Delete user </a>
                 </button>
                 <br>
                 <br>

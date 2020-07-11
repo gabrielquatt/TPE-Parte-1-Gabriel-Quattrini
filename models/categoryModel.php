@@ -2,7 +2,7 @@
 
 require_once ('model.php');
 
-class CategoryModel extends model{
+class CategoryModel extends Model{
 
     /**
      *  Funcion que trae de la base de datos todas las "categorias" de la tabla category

@@ -40,7 +40,7 @@ article{
 
 .detailgam {
   border: solid rgb(126, 128, 0) 2px;
-  background-image: url(../img/fondodiv.jpg);
+  background-image: url(../img/fondo-div.jpg);
 }
 .portadaGrid {
   width: 180px;
@@ -114,7 +114,7 @@ textarea {
 }
 
 body {
-  background-image: url(../img/fondo.png);
+  background-image: url(../img/fondo.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -219,7 +219,7 @@ header {
   margin-right: 5%;
   margin-top: 10px;
   border: solid rgb(126, 128, 0) 2px;
-  background-image: url(../img/fondodiv1.jpg);
+  background-image: url(../img/fondo-div.jpg);
   
   background-size: auto;
 }

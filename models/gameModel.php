@@ -2,7 +2,7 @@
 
 require_once('model.php');
 
-class GameModel extends model
+class GameModel extends Model
 {
 
     /**
@@ -111,7 +111,7 @@ class GameModel extends model
      * Funcion para editar Imagen de portada
      * @param img = siempre sera una imagen chequeado en el controller
      */
-    public function editImage($img,$idGame)
+    public function editPortada($img,$idGame)
     {
         $pathImg = 'img/portadaError.jpg';
         if ($img)

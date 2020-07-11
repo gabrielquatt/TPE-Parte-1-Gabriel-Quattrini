@@ -21,15 +21,16 @@ include_once ('models/CaptureModel.php');
         private $modelCapture;
 
         public function __construct(){
+            //consulta de si hay algun ususario loggueado 
             $this->user = AuthHelper::getDataUser();
             $this->modelCategory = new CategoryModel();
             $this->modelGame = new GameModel();
-            $this->modelAdmin = new userModel();
+            $this->modelAdmin = new UserModel();
             $this->modelCapture = new CaptureModel(); 
             $this->gameView = new GameView();
-            $this->adminView = new adminView();
-            $this->errorView = new errorView();
-            $this->login = new loginView();
+            $this->adminView = new AdminView();
+            $this->errorView = new ErrorView();
+            $this->login = new LoginView();
          }
 
     public function getmodelcategoty(){
@@ -59,13 +60,20 @@ include_once ('models/CaptureModel.php');
     public function user(){
         return $this->user;
     }
+    /**
+     * Funcion que realiza consulta sobre los permisos del ususario loggueado
+     */
     public function admin(){
-        $name = AuthHelper::getLoggedUserName();
+        $name = AuthHelper::getLoggedUserName();//solo de haber un ususario logguedo se devolveran los datos
          if(isset($name)){
              $admin = $this->getusermodel()->admiAcces($name);
              return $admin; 
          }
     }
+
+    /**
+     * funcion para mostrar error + mensaje de cual sea
+     */
     public function showError($mensegge){ 
         $array = $this->user();     
         $categorysid = $this->getmodelcategoty()->getAllCategory(); 

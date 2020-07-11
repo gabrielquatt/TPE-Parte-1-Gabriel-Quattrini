@@ -6,6 +6,4 @@
 {include 'templates/users-delete.tpl'}
 <div>
 
-
-
 {include 'templates/footer.tpl'}
