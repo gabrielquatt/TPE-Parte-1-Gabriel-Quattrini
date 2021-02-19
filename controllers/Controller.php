@@ -1,13 +1,13 @@
 <?php
 // include_once ('views/view.php');
-include_once ('views/GameView.php');
-include_once ('views/AdminView.php');
-include_once ('views/LoginView.php');
-include_once ('views/ErrorView.php');
-include_once ('models/CategoryModel.php');
-include_once ('models/GameModel.php');
-include_once ('models/UserModel.php');
-include_once ('models/CaptureModel.php'); 
+include_once('views/GameView.php');
+include_once('views/AdminView.php');
+include_once('views/LoginView.php');
+include_once('views/ErrorView.php');
+include_once('models/CategoryModel.php');
+include_once('models/GameModel.php');
+include_once('models/UserModel.php');
+include_once('models/CaptureModel.php'); 
 
  class Controller {
         private $user;

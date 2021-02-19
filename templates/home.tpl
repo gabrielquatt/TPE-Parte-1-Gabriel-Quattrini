@@ -44,13 +44,13 @@
                     los distintos juegos selecionando ver todos (all games) o segun su categoria, a las funciones de
                     administracion no tendra acceso alguno si no sabe contraseña y usuario de algun admin. 
                     NOTA: podra comentar y puntuar un juego</p>
-                    <br>
+                 {*    <br>
                     <iframe class="video" src="https://www.youtube.com/embed/qG-FFTeZfZM"></iframe>
                     {else}
                     <p class="fond-text" >create una cuenta es gratis</p><br>
                     <br>
                     <iframe class="video" src="https://www.youtube.com/embed/qG-FFTeZfZM"></iframe>
-                 {/if}  
+                  *}{/if}  
             </div>
     </div>
 {include 'templates/footer.tpl'}

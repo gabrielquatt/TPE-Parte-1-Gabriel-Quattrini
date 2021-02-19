@@ -1,7 +1,7 @@
 <?php
-require_once 'models/categoryModel.php';
-require_once 'models/commentModel.php';
-require_once 'models/gameModel.php';
+require_once 'models/CategoryModel.php';
+require_once 'models/CommentModel.php';
+require_once 'models/GameModel.php';
 require_once 'api/APIView.php';
 
 class ApiController
